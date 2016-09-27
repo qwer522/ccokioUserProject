@@ -27,12 +27,13 @@ public class MainView {
 		if(mainViewNumber == 1){
 
 		}else if(mainViewNumber == 2){
-
+			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){
 
 		}else if(mainViewNumber == 4){
 
 		}else if(mainViewNumber == 5){
+			
 
 		}else if(mainViewNumber == 0){
 			System.out.println("꼬끼오 프로그램을 종료합니다.");
