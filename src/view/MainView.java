@@ -27,7 +27,7 @@ public class MainView {
 		if(mainViewNumber == 1){
 
 		}else if(mainViewNumber == 2){
-			Controllers.getLoginController().requestLogin();
+			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){
 
 		}else if(mainViewNumber == 4){
