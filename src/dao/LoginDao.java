@@ -66,16 +66,19 @@ public class LoginDao {
 		boolean success = false;
 		
 		if (LoginRepository.getLogin() != null) {
-			
 			success = true;
 		}
 
 		return success;
 	}
 	
-	public static void logOut(){
+	public boolean logOut() {
+		boolean success = false;
 		
 		LoginRepository.setLogin(null);
+		success = true;
+	
+		return success;
 	}
 
 }

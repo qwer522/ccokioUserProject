@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 /controller/
-=======
->>>>>>> origin/master
-/view/
 /dao/
+/domain/
+/main/
+/repository/
+/view/

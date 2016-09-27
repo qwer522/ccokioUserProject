@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
+import controller.Controllers;
 import domain.NonUserPayment;
 import domain.UserPayment;
 
@@ -22,11 +23,11 @@ public class PaymentLisetView {
 			System.out.print(userPayments.get(i).getOrderNumber() + "\t");
 			System.out.print(userPayments.get(i).getProductName() + "\t");
 			System.out.print(userPayments.get(i).getOrderCount() + "\t");
-			System.out.print(userPayments.get(i).getOrderCount() + "\t");
-			System.out.println(userPayments.get(i).getOrderSum());
+			System.out.print(userPayments.get(i).getOrderSum() + "\t");
+			System.out.println(userPayments.get(i).getPaymentDate());
 
 		}
-		//결제내역정보보고 그다음화면 호출
+		Controllers.getMainController().requestMainView();
 	}
 
 	public void nonUserPaymentList(ArrayList<NonUserPayment> nonUserPayments) {//비회원결제목록 보기
@@ -40,11 +41,11 @@ public class PaymentLisetView {
 			System.out.print(nonUserPayments.get(i).getOrderNumber() + "\t");
 			System.out.print(nonUserPayments.get(i).getProductName() + "\t");
 			System.out.print(nonUserPayments.get(i).getOrderCount() + "\t");
-			System.out.print(nonUserPayments.get(i).getOrderCount() + "\t");
-			System.out.println(nonUserPayments.get(i).getOrderSum());
+			System.out.print(nonUserPayments.get(i).getOrderSum() + "\t");
+			System.out.println(nonUserPayments.get(i).getPaymentDate());
 
 		}
-		//결제내역정보보고 그다음화면 호출
+		Controllers.getMainController().requestMainView();
 	}
 
 }

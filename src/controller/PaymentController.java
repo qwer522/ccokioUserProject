@@ -19,21 +19,29 @@ public class PaymentController {
 	}
 	
 	public void requestRegister() { //결제 요청 처리를 위한 메서드
-
-		int checking = paymentDao
 		
-		//결제 처리
-		boolean success = paymentDao.userRegister();
-
-		if(success) {
-			//주문내역 삭제	
-			new AlertView().alert("결제처리가 완료되었습니다.");
-			// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+		//회원인지 비회원인지 체크 1이면 회원 2이면 비회원 다른거는 오류
+		int checking = paymentDao.Loginchecking();
+		
+		if(checking == 1) { //회원일때 결제처리
+			boolean success = paymentDao.userRegister();
+			if(success) {
+				new AlertView().alert("결제처리가 완료되었습니다.");
+				// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+			}
+			Controllers.getMainController().requestUserMainView();
+		}else if(checking == 2) {//비회원일때 결제처리 
+			boolean success = paymentDao.nonUserRegister();
+			if(success) {
+				new AlertView().alert("결제처리가 완료되었습니다.");
+				// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+			}
+			Controllers.getMainController().requestNonUserMainView();
+		}else {//오류
+			new AlertView().alert("결제 오류");
+			Controllers.getMainController().requestMainView();
 		}
-
-		//제품 목록 보기
-		// Controllers.getProductController().requestSelectList(); 제품목록리스트 호출 메인화면
-		new AlertView().alert("제품 컨트롤러의 제품 목록 보기를 요청함.");
+		
 
 	}
 
@@ -48,7 +56,7 @@ public class PaymentController {
 			paymentListView.userPaymentList(userPayments);
 		}else {
 			new AlertView().alert("결제 내역이 없습니다.");
-			//결제내역없는거표시후 그다음 화면 호출
+			Controllers.getMainController().requestMainView();
 		}
 
 	}
@@ -56,7 +64,7 @@ public class PaymentController {
 	public void requestNonUserPayment() { //비회원 결제목록 조회
 
 		//dao호출
-		ArrayList<NonUserPayment>nonUserPayments = paymentDao.nonUserPayment();
+		ArrayList<NonUserPayment> nonUserPayments = paymentDao.nonUserPayment();
 
 		if(nonUserPayments != null) {
 			//view호출
@@ -64,7 +72,7 @@ public class PaymentController {
 			paymentListView.nonUserPaymentList(nonUserPayments);
 		}else {
 			new AlertView().alert("결제 내역이 없습니다.");
-			//결제내역없는거표시후 그다음 화면 호출
+			Controllers.getMainController().requestMainView();
 		}
 
 	}

@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 
+import controller.Controllers;
 import domain.Login;
 
 public class LoginView {
@@ -17,7 +18,7 @@ public class LoginView {
 	
 	// 로그인 정보 입력
 	
-	public Login login(){
+	public void login(){
 		
 		String loginId = null;
 		String loginPassword = null;
@@ -32,8 +33,7 @@ public class LoginView {
 		
 		Login newLogin = new Login(loginId, loginPassword);
 	
-		return newLogin;
-		
+		Controllers.getLoginController().requestLoginProcessing(newLogin);
 		
 	}
 

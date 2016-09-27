@@ -19,36 +19,47 @@ public class LoginController {
 
 		// 로그인 정보 담아와서 Login 획득
 		LoginView loginView = new LoginView();
-		Login newLogin = loginView.login();
+		loginView.login();
 
+	}
+	
+	public void requestLoginProcessing(Login newLogin) {
+		
 		boolean success = loginDao.logIn(newLogin);
 
 		if (success) {
 			new AlertView().alert("로그인 성공 하였습니다.");
-			controller.Controllers.getMainController().requestUserMainView();
-
+			Controllers.getMainController().requestUserMainView();
 		} else {
-			new AlertView().alert("로그인 실패 하였습니다.");
+			new AlertView().alert("아이디 또는 비밀번호가 틀립니다.");
+			Controllers.getMainController().requestMainView();
 		}
 
-		// 제품 컨트롤러의 제품 목록 보기 화면으로 이동
-		new AlertView().alert("제품 목록으로 이동");
-		// 컨트롤러를 통해 제품 목록으로 연결하여야함.
-
 	}
-
-	public boolean requestCheckLogin() {
+	
+	public void requestCheckLogin() { //로그인 체킹인데 이거는 원하는곳에서 dao만 호출하면되서 필요없을수도 있다.
 
 		boolean success = loginDao.checkLogin();
-
-		return success;
-
+		if(success) {
+			new AlertView().alert("로그인 되어있음");
+			Controllers.getMainController().requestUserMainView();
+		}else {
+			new AlertView().alert("로그인 안되어있음");
+			Controllers.getMainController().requestMainView();
+		}
 	}
 
-	public void requestLogout(){
-		
+	public void requestLogout(){ //로그아웃
+
 		// 로그아웃 하면서  리포지 토리에있는 카트정보삭제
-		
-		loginDao.logOut();
+		boolean success = loginDao.logOut();
+		if(success == true) {
+			new AlertView().alert("장바구니 초기화 성공");
+			Controllers.getMainController().requestMainView();
+		}else {
+			new AlertView().alert("장바구니 초기화 실패");
+			Controllers.getMainController().requestUserMainView();
+		}
+
 	}
 }
