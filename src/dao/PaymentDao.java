@@ -22,7 +22,7 @@ public class PaymentDao {
 
 			Controllers.getProgramController().getConnection().setAutoCommit(false);
 			
-			String sql = " select orderNumber from order4 where userId = ? and paymentflag = 'n'";
+			String sql = " select userOrderNumber from UserOrder where userId = ? and paymentflag = 'n'";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, "qwer522"); //로그인 레파지토이 아이디로 호출할것 qwer522는 대체로넣어놓은것
 			rs = pstmt.executeQuery();
