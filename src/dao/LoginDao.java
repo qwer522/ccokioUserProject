@@ -29,12 +29,8 @@ public class LoginDao {
 			pstmt.setString(1, newLogin.getLoginId());
 			pstmt.setString(2, newLogin.getLoginPassword());
 			rs = pstmt.executeQuery();
-<<<<<<< HEAD
 
-			if (rs.next()) {
-=======
 			if(rs.next()) {
->>>>>>> refs/remotes/origin/master
 				LoginRepository.setLogin(newLogin);
 				success = true;
 			}else {

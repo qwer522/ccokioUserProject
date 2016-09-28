@@ -92,7 +92,7 @@ public class MainView {
 		System.out.println("2. 주문");
 		System.out.println("3. 장바구니 상품 수량 수정");
 		System.out.println("4. 장바구니 상품 삭제");
-		System.out.println("5.장바구니 비우기");
+		System.out.println("5. 장바구니 비우기");
 		
 		
 		int selectedMenu = keyboard.nextInt();
