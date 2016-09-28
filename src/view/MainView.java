@@ -29,12 +29,11 @@ public class MainView {
 		}else if(mainViewNumber == 2){
 			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){
-
+			Controllers.getNonUserController().requestNonUserRegister(); // 비회원 주문 메서드 호출
 		}else if(mainViewNumber == 4){
 
 		}else if(mainViewNumber == 5){
-			
-
+			Controllers.getUserController().requestRegister(); //회원가입
 		}else if(mainViewNumber == 0){
 			System.out.println("꼬끼오 프로그램을 종료합니다.");
 			System.exit(0);

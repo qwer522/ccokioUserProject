@@ -6,14 +6,24 @@ public class Controllers {
 	private static MainController mainController;
 	private static PaymentController paymentController;
 	private static LoginController loginController;
+<<<<<<< HEAD
 	private static CartController cartController;
+=======
+	private static UserController userController;
+	private static NonUserController nonUserController;
+>>>>>>> refs/remotes/origin/master
 
 	public Controllers() {
 		loginController = new LoginController();
 		mainController = new MainController();
 		programController = new ProgramController();
 		paymentController = new PaymentController();
+<<<<<<< HEAD
 		cartController = new CartController();
+=======
+		userController = new UserController();
+		nonUserController = new NonUserController();
+>>>>>>> refs/remotes/origin/master
 	}
 
 	public static LoginController getLoginController() {
@@ -32,8 +42,17 @@ public class Controllers {
 		return paymentController;
 	}
 
+<<<<<<< HEAD
 	public static CartController getCartController() {
 		return cartController;
+=======
+	public static UserController getUserController() {
+		return userController;
+	}
+
+	public static NonUserController getNonUserController() {
+		return nonUserController;
+>>>>>>> refs/remotes/origin/master
 	}
 
 }
