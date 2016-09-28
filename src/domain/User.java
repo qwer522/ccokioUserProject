@@ -19,6 +19,12 @@ public class User {
 		this.userTel = userTel;
 		this.userAddress = userAddress;
 	}
+	
+	public User(String userPassword, String userTel, String userAddress) {
+		this.userPassword = userPassword;
+		this.userTel = userTel;
+		this.userAddress = userAddress;
+	}
 
 	public int getUserNumber() {
 		return userNumber;
