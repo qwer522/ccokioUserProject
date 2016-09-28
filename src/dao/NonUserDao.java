@@ -22,14 +22,14 @@ public class NonUserDao {
 		boolean success = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		// int result = 0;
 
 		try {
 			// DB 테이블에 비회원 데이터 삽입
-			String sql = "insert into NonUser values(NonUser_NonUserNumber_seq.nextval, ?, ?)";
+			String sql = "insert into NonUser values(NonUser_NonUserNumber_seq.nextval, ?, ?, ?)";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newNonUser.getNonUserName());
 			pstmt.setString(2, newNonUser.getNonUserTel());
+			pstmt.setString(3, newNonUser.getNonUserAddress());
 			
 			// 메모리(repository)에 비회원 데이터 삽입 
 			pstmt.executeUpdate();

@@ -30,10 +30,12 @@ public class NonUserController {
 
 		if (success) {
 			new AlertView().alert("비회원 등록 성공 ");
+			Controllers.getMainController().requestNonUserMainView();
 		} else {
 			new AlertView().alert("비회원 등록 실패");
+			Controllers.getMainController().requestMainView();
 		}
-		Controllers.getMainController().requestNonUserMainView();
+		
 	}
 
 }

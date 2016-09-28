@@ -32,9 +32,8 @@ public class UserController {
 		} else {
 			new AlertView().alert("중복된 아이디가 있습니다.");
 		}
-		
 		Controllers.getMainController().requestMainView();
-
+		
 	}
 
 }
