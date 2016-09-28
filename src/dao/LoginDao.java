@@ -24,14 +24,21 @@ public class LoginDao {
 
 		try {
 			//로그인 아이디 비밀번호 확인
-			String sql = "select * from user1 where userId = ? and userPassword = ?";
+			String sql = "select userId, userPassword from user1 where userId = ? and userPassword = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newLogin.getLoginId());
 			pstmt.setString(2, newLogin.getLoginPassword());
 			rs = pstmt.executeQuery();
+<<<<<<< HEAD
+
+			if (rs.next()) {
+=======
 			if(rs.next()) {
+>>>>>>> refs/remotes/origin/master
 				LoginRepository.setLogin(newLogin);
 				success = true;
+			}else {
+				
 			}
 			
 		} catch (SQLException e) {
