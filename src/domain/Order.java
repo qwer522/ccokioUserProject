@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.Date;
-
 public class Order {
 
 	private int UserOrderNumber;
@@ -10,7 +8,6 @@ public class Order {
 	private int orderAmount;
 	private int productPrice;
 	private String userAddress;
-	private Date orderDate;
 	
 	
 	public Order() {
@@ -18,7 +15,7 @@ public class Order {
 	}
 	
 	public Order(int userOrderNumber, String userId, String productName, 
-			int orderAmount, int productPrice, String userAddress, Date orderDate) {
+			int orderAmount, int productPrice, String userAddress) {
 		
 		this.UserOrderNumber = userOrderNumber;
 		this.userId = userId;
@@ -26,7 +23,6 @@ public class Order {
 		this.orderAmount = orderAmount;
 		this.productPrice = productPrice;
 		this.userAddress = userAddress;
-		this.orderDate = orderDate;
 		
 	}
 
@@ -83,11 +79,4 @@ public class Order {
 		this.userAddress = userAddress;
 	}
 
-	public Date getOrderDate() {
-		return orderDate;
-	}
-
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
-	}
 }
