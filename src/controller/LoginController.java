@@ -25,7 +25,7 @@ public class LoginController {
 
 		if (success) {
 			new AlertView().alert("로그인 성공 하였습니다.");
-			controller.Controllers.getMainController().requestUserMainView();
+			
 
 		} else {
 			new AlertView().alert("로그인 실패 하였습니다.");
@@ -33,6 +33,7 @@ public class LoginController {
 
 		// 제품 컨트롤러의 제품 목록 보기 화면으로 이동
 		new AlertView().alert("제품 목록으로 이동");
+		Controllers.getUserController().requestUserUpdate();
 		// 컨트롤러를 통해 제품 목록으로 연결하여야함.
 
 	}

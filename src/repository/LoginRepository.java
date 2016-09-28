@@ -7,7 +7,6 @@ public class LoginRepository {
 	private static Login login;
 
 	public LoginRepository() {
-
 		login = null;
 	}
 

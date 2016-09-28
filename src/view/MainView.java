@@ -25,11 +25,11 @@ public class MainView {
 
 		int mainViewNumber = keyboard.nextInt();
 		if(mainViewNumber == 1){
-
+			
 		}else if(mainViewNumber == 2){
 			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){
-
+			
 		}else if(mainViewNumber == 4){
 
 		}else if(mainViewNumber == 5){
@@ -54,9 +54,9 @@ public class MainView {
 
 		int userMainViewNumber = keyboard.nextInt();
 		if(userMainViewNumber == 1){
-
+			Controllers.getUserController().requestUserUpdate();
 		}else if(userMainViewNumber == 2){
-
+			
 		}else if(userMainViewNumber == 3){
 
 		}else if(userMainViewNumber == 4){
@@ -78,7 +78,7 @@ public class MainView {
 		if(nonUserMainViewNumber == 1){
 
 		}else if(nonUserMainViewNumber == 2){
-
+			
 		}else if(nonUserMainViewNumber == 3){
 			Controllers.getMainController().requestMainView();
 		}else {

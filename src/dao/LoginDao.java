@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import controller.Controllers;
 import domain.Login;
 import repository.LoginRepository;
-import view.AlertView;
+
 
 public class LoginDao {
 
@@ -31,14 +31,13 @@ public class LoginDao {
 			pstmt.setString(2, newLogin.getLoginPassword());
 			rs = pstmt.executeQuery();
 
-			if (rs != null) {
-				
+			if (rs.next()) {
 				LoginRepository.setLogin(newLogin);
 				success = true;
+			}else {
 			}
 
 		} catch (SQLException e) {
-			new AlertView().alert("아이디나 비밀번호가 틀렸습니다.");
 			e.printStackTrace();
 		} finally {
 			if (rs != null) {
@@ -73,7 +72,7 @@ public class LoginDao {
 		return success;
 	}
 	
-	public static void logOut(){
+	public void logOut(){
 		
 		LoginRepository.setLogin(null);
 	}

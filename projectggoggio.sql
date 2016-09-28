@@ -69,7 +69,7 @@ create table User1
   purchaseQuantity int default 0 not null
 );
 
-insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(1, '1', '1', '111', '111111', '11-11'); 
+insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(1, '2', '2', '222', '111111', '1111'); 
 insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(2, '윤식', '윤식', '111', '111111', '11-11'); 
 insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(3, '333', '333', '111', '111111', '11-11'); 
 select * from user1;
