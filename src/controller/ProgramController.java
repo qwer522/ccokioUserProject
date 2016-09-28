@@ -12,7 +12,7 @@ public class ProgramController {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "system", "1234");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "system", "b2q7c3r8");
 
 
 		} catch (ClassNotFoundException e) {

@@ -1,3 +1,5 @@
+commit;
+
 --테이블 보기
 select * from Admin1;
 select * from Managers;
@@ -55,6 +57,10 @@ create table Product
   productPrice int not null,
   productOrigin varchar2(50) not null
 );
+
+insert into Product(productnumber, productName, productCommant, productPrice, productOrigin) values(1, '과자', '11', 11, '111'); 
+select * from product;
+
 --회원 (1넣은이유는 user이란게 시스템에있어서)
 create table User1
 (
@@ -83,8 +89,19 @@ create table UserOrder
   productName varchar2(50) references product(productName),
   orderAmount int not null,
   UserAddress varchar2(50)  not null,
+  orderDate ,
   paymentflag VARCHAR2(5) default 'n'
 );
+insert into userorder values(1, '1', '과자', 11, '11-11', 'n'); 
+select * from userorder;
+drop table userorder;
+
+select o.userOrderNumber, p.productName, o.orderAmount, p.productPrice
+from product p, userOrder o, user1 u
+where o.userId = 1 and o.productName = p.productName 
+and o.paymentflag = 'n';
+
+
 --회원 결제
 create table UserPayment
 (

@@ -6,12 +6,14 @@ public class Controllers {
 	private static MainController mainController;
 	private static PaymentController paymentController;
 	private static LoginController loginController;
+	private static CartController cartController;
 
 	public Controllers() {
 		loginController = new LoginController();
 		mainController = new MainController();
 		programController = new ProgramController();
 		paymentController = new PaymentController();
+		cartController = new CartController();
 	}
 
 	public static LoginController getLoginController() {
@@ -28,6 +30,10 @@ public class Controllers {
 
 	public static PaymentController getPaymentController() {
 		return paymentController;
+	}
+
+	public static CartController getCartController() {
+		return cartController;
 	}
 
 }

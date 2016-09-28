@@ -23,4 +23,8 @@ public class MainController {
 		nonUserMainView.nonUserMainView();
 	}
 
+	public void requestUserCartView() { //회원 장바구니 메뉴
+		MainView userCartView = new MainView();
+		userCartView.userCartView();
+	}
 }	
