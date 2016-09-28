@@ -1,1 +1,4 @@
 /controller/
+/domain/
+/dao/
+/repository/
