@@ -29,6 +29,7 @@ public class NonUserRegisterView {
 		nonUserTel = keyboard.next();
 		System.out.print("주   소 : ");
 		nonUserAddress = keyboard.next();
+		
 		NonUser newNonUser = new NonUser(nonUserName, nonUserTel, nonUserAddress);
 
 		Controllers.getNonUserController().requestReturnNonUserRegister(newNonUser);

@@ -2,10 +2,10 @@ package domain;
 
 public class NonUser {
 
-	// private int nonUserNumber;
 	private String nonUserName;
 	private String nonUserTel;
 	private String nonUserAddress;
+	
 	public NonUser() {
 
 	}
