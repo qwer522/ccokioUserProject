@@ -6,6 +6,7 @@ import dao.PaymentDao;
 import domain.NonUserPayment;
 import domain.UserPayment;
 import view.AlertView;
+import view.PaymentCouponView;
 import view.PaymentLisetView;
 
 public class PaymentController {
@@ -17,31 +18,48 @@ public class PaymentController {
 		paymentDao = new PaymentDao();
 
 	}
+
+	public void requestUserRegisterCouponChecking() { //회원 결제시 쿠폰 확인
+
+
+		int userCoupon = paymentDao.couponChecking();
+		
+		PaymentCouponView paymentCouponView = new PaymentCouponView();
+		paymentCouponView.couponCheckingView(userCoupon);
+
+	}
 	
-	public void requestRegister() { //결제 요청 처리를 위한 메서드
+	public void requestUserRegisterCouponUse() { //쿠폰을 사용한다.
 		
-		//회원인지 비회원인지 체크 1이면 회원 2이면 비회원 다른거는 오류
-		int checking = paymentDao.Loginchecking();
 		
-		if(checking == 1) { //회원일때 결제처리
-			boolean success = paymentDao.userRegister();
-			if(success) {
-				new AlertView().alert("결제처리가 완료되었습니다.");
-				// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
-			}
-			Controllers.getMainController().requestUserMainView();
-		}else if(checking == 2) {//비회원일때 결제처리 
-			boolean success = paymentDao.nonUserRegister();
-			if(success) {
-				new AlertView().alert("결제처리가 완료되었습니다.");
-				// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
-			}
-			Controllers.getMainController().requestNonUserMainView();
+		
+	}
+
+	public void requestUserRegister() { //회원 결제 요청 처리를 위한 메서드
+
+		boolean success = paymentDao.userRegister();
+		
+		if(success) {
+			new AlertView().alert("결제처리가 완료되었습니다.");
+			// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
 		}else {//오류
 			new AlertView().alert("결제 오류");
-			Controllers.getMainController().requestMainView();
 		}
-		
+		Controllers.getMainController().requestUserMainView();
+
+	}
+
+	public void requestNonUserRegister() { //비회원 결제 요청 처리를 위한 메서드
+
+		boolean success = paymentDao.nonUserRegister();
+
+		if(success) {
+			new AlertView().alert("결제처리가 완료되었습니다.");
+			// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+		}else {//오류
+			new AlertView().alert("결제 오류");
+		}
+		Controllers.getMainController().requestNonUserMainView();
 
 	}
 
@@ -76,7 +94,5 @@ public class PaymentController {
 		}
 
 	}
-
-
 
 }

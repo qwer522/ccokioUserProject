@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import controller.Controllers;
 import domain.Login;
 import repository.LoginRepository;
-import view.AlertView;
 
 public class LoginDao {
 
@@ -30,30 +29,17 @@ public class LoginDao {
 			pstmt.setString(1, newLogin.getLoginId());
 			pstmt.setString(2, newLogin.getLoginPassword());
 			rs = pstmt.executeQuery();
-
-			if (rs != null) {
-				
+			if(rs.next()) {
 				LoginRepository.setLogin(newLogin);
 				success = true;
 			}
-
+			
 		} catch (SQLException e) {
-			new AlertView().alert("아이디나 비밀번호가 틀렸습니다.");
 			e.printStackTrace();
 		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			if (rs != null) {try {rs.close();} catch (SQLException e) {	e.printStackTrace();}
 			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
 		}
 

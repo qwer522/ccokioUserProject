@@ -1,3 +1,4 @@
+
 --테이블 보기
 select * from Admin1;
 select * from Managers;
@@ -10,7 +11,7 @@ select * from NonUserOrder;
 select * from NonUser;
 
 --테이블삭제
-drop table Admin1;
+drop table Admin1t;
 drop table Managers;
 drop table Product;
 drop table UserPayment;
@@ -36,7 +37,6 @@ create table Admin1
   adminNumber int PRIMARY key,
   adminId varchar2(50) not null UNIQUE,
   adminPassword varchar2(20) not null
-  
 );
 --매니저
 create table Managers
@@ -68,13 +68,8 @@ create table User1
   coupon int default 0 not null,
   purchaseQuantity int default 0 not null
 );
-
-insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(1, '1', '1', '111', '111111', '11-11'); 
-insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(2, '윤식', '윤식', '111', '111111', '11-11'); 
-insert into User1(usernumber, userid, userpassword, username, usertel, useraddress) values(3, '333', '333', '111', '111111', '11-11'); 
-select * from user1;
-
-
+insert into user1(userNumber, userId, userPassword, userName, userTel, userAddress) values('1','1','1','1','1','1');
+select * from user1 where userId = '1' and userPassword = '1';
 --회원 주문
 create table UserOrder
 (
@@ -85,6 +80,7 @@ create table UserOrder
   UserAddress varchar2(50)  not null,
   paymentflag VARCHAR2(5) default 'n'
 );
+
 --회원 결제
 create table UserPayment
 (
@@ -111,6 +107,7 @@ create table NonUserOrder
   nonUserAddress varchar2(50)  not null,
   paymentflag VARCHAR2(5) default 'n'
 );
+
 --비회원 결제
 create table NonUserPayment
 (
@@ -143,3 +140,21 @@ create sequence User1_paymentNumber_seq nomaxvalue;
 
 -- 비회원결제번호 시퀀스
 create sequence NonUser_paymentNumber_seq nomaxvalue;
+
+--회원 결제목록 뷰
+create view Userpayment_view_paymentInfor
+as
+select pay.userPaymentNumber, o.userId, o.userOrderNumber, p.productName, o.orderAmount, p.productPrice, pay.paymentDate 
+from Userorder o, product p, Userpayment pay
+where p.productName = o.productName and o.paymentflag = 'y';
+
+drop view Userpayment_view_paymentInfor;
+
+--비회원 결제목록 뷰
+create view Nonuserpay_view_paymentInfor
+as
+select pay.nonUserPaymentNumer, o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, pay.paymentDate 
+from NonUserOrder o, product p, NonUserPayment pay
+where p.productName = o.productName and o.paymentflag = 'y';
+
+drop view Nonuserpay_view_paymentInfor;
