@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import controller.Controllers;
 import domain.User;
+import repository.LoginRepository;
 import view.AlertView;
 
 public class UserDao {
@@ -65,6 +66,39 @@ public class UserDao {
 					e.printStackTrace();
 				}
 			}
+		}
+
+		return success;
+
+	}
+	
+	public boolean userUpdate(User user) {
+
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		String sql = "update user1 set userpassword = ?, userTel = ?, userAddress = ? where userId = ?";
+
+		try {
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, user.getUserPassword());
+			pstmt.setString(2, user.getUserTel());
+			pstmt.setString(3, user.getUserAddress());
+			pstmt.setString(4, LoginRepository.getLogin().getLoginId());
+			pstmt.executeUpdate();
+
+			success = true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+
 		}
 
 		return success;

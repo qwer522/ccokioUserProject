@@ -1,6 +1,7 @@
 package controller;
 
 import dao.UserDao;
+import domain.User;
 import view.AlertView;
 import view.UserRegisterView;
 
@@ -23,7 +24,7 @@ public class UserController {
 	}
 
 	public void requestReturnRegister(User newUser) {
-
+	
 		boolean success = userDao.userRegister(newUser);
 
 		if (success) {
