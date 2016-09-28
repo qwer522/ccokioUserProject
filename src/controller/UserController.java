@@ -1,7 +1,6 @@
 package controller;
 
 import dao.UserDao;
-import domain.User;
 import view.AlertView;
 import view.UserRegisterView;
 
