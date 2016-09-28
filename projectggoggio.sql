@@ -89,10 +89,10 @@ create table UserOrder
   productName varchar2(50) references product(productName),
   orderAmount int not null,
   UserAddress varchar2(50)  not null,
-  orderDate ,
+  orderDate date default sysdate,
   paymentflag VARCHAR2(5) default 'n'
 );
-insert into userorder values(1, '1', '과자', 11, '11-11', 'n'); 
+insert into userorder(userordernumber, userid, productname, orderamount, useraddress) values(1, '1', '과자', 11, '11-11'); 
 select * from userorder;
 drop table userorder;
 
