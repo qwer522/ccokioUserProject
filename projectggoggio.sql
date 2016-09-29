@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+
 commit;
-=======
->>>>>>> refs/remotes/origin/master
+
+
 
 --테이블 보기
 select * from Admin1;
@@ -85,12 +85,10 @@ create table UserOrder
   userId varchar2(50) references user1(userId),
   productName varchar2(50) references product(productName),
   orderAmount int not null,
-  UserAddress varchar2(50)  not null,
-  orderDate ,
   paymentflag VARCHAR2(5) default 'n'
 );
-<<<<<<< HEAD
-insert into userorder values(1, '1', '과자', 11, '11-11', 'n'); 
+
+insert into userorder values(User1_orderNumber_seq.nextval, '1', '과자', 11, 'n'); 
 select * from userorder;
 drop table userorder;
 
@@ -99,8 +97,6 @@ from product p, userOrder o, user1 u
 where o.userId = 1 and o.productName = p.productName 
 and o.paymentflag = 'n';
 
-=======
->>>>>>> refs/remotes/origin/master
 
 --회원 결제
 create table UserPayment

@@ -10,9 +10,9 @@ import domain.Cart;
 import repository.CartRepository;
 import repository.LoginRepository;
 
-public class CartDaoForUser {
+public class UserCartDao {
 
-	public CartDaoForUser() {
+	public UserCartDao() {
 		new CartRepository();
 	}
 	// 0. 처음 로그인 시 DB에 있는 결제되지 않은 주문목록 장바구니로 불러오기

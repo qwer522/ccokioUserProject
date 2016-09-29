@@ -2,26 +2,26 @@ package controller;
 
 import java.util.ArrayList;
 
-import dao.CartDaoForUser;
+import dao.UserCartDao;
 import domain.Cart;
 import view.AlertView;
 import view.CartListView;
 import view.CartRegisterView;
 import view.CartUpdateView;
 
-public class CartController {
+public class UserCartController {
 
-	private CartDaoForUser CartDaoForUser;	
+	private UserCartDao UserCartDao;	
 
-	public CartController() {
+	public UserCartController() {
 
-		CartDaoForUser = new CartDaoForUser();
+		UserCartDao = new UserCartDao();
 	}
 
 	//0. 처음 로그인 시 DB에 있는 결제되지 않은 주문목록 장바구니로 불러오는 메서드 호출
 	public void requestLoadCartList() {
 
-		boolean success = CartDaoForUser.loadCartList();
+		boolean success = UserCartDao.loadCartList();
 
 		if(success) {
 			new AlertView().alert("장바구니 불러오기 성공");
@@ -40,7 +40,7 @@ public class CartController {
 		CartRegisterView cartRegisterView = new CartRegisterView();
 		int orderCount = cartRegisterView.cartRegister();
 
-		boolean success = CartDaoForUser.CartRegister(productNumber, orderCount);
+		boolean success = UserCartDao.CartRegister(productNumber, orderCount);
 
 		if(success) {
 			new AlertView().alert("장바구니에 넣었습니다!");
@@ -58,7 +58,7 @@ public class CartController {
 	//2. 장바구니 목록 (조회의 기능까지 포함 : 모든 정보 다 보여줄 것)
 	public void requestCartList() {
 
-		ArrayList<Cart> carts = CartDaoForUser.selectCartList();
+		ArrayList<Cart> carts = UserCartDao.selectCartList();
 		
 		CartListView cartListView = new CartListView();
 		cartListView.printCartList(carts);
@@ -77,7 +77,7 @@ public class CartController {
 	public void requestUpdateOrderAmountProcess(int cartNumber, int updateOrderCount) {
 
 		//dao 호출하여 장바구니 번호와 일치하면 수량 수정
-		boolean success = CartDaoForUser.updateOrderAmount(cartNumber, updateOrderCount);
+		boolean success = UserCartDao.updateOrderAmount(cartNumber, updateOrderCount);
 
 		if(success) {
 			new AlertView().alert("수량을 수정하였습니다.");
@@ -91,7 +91,7 @@ public class CartController {
 	//4. 장바구니 비우기
 	public void requestCartClear() {
 
-		boolean success = CartDaoForUser.cartClear();
+		boolean success = UserCartDao.cartClear();
 
 		if(success) {
 			new AlertView().alert("장바구니를 비웠습니다.");
@@ -111,7 +111,7 @@ public class CartController {
 
 	public void requestCartDeleteOneProcess(int cartNumber) {
 
-		boolean success = CartDaoForUser.cartDeleteOne(cartNumber);
+		boolean success = UserCartDao.cartDeleteOne(cartNumber);
 
 		if (success) {
 			new AlertView().alert("선택하신 주문을 장바구니에서 삭제하였습니다.");

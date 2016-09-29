@@ -1,8 +1,8 @@
 package dao;
 
-public class CartDaoForNonUser {
+public class NonUserCartDao {
 
-	public CartDaoForNonUser() {
+	public NonUserCartDao() {
 		
 	}
 	
