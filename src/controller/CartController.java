@@ -21,14 +21,15 @@ public class CartController {
 	//0. 처음 로그인 시 DB에 있는 결제되지 않은 주문목록 장바구니로 불러오는 메서드 호출
 	public void requestLoadCartList() {
 
+		CartDaoForUser.cartClear();
 		boolean success = CartDaoForUser.loadCartList();
 
 		if(success) {
-			new AlertView().alert("장바구니 불러오기 성공");
+			new AlertView().alert("db 불러오기 성공");
 		} else {
-			new AlertView().alert("장바구니 불러오기 실패");
+			new AlertView().alert("db 불러오기 실패");
+			Controllers.getMainController().requestMainView();
 		}
-		Controllers.getMainController().requestUserMainView();
 	}
 
 
@@ -64,7 +65,6 @@ public class CartController {
 		cartListView.printCartList(carts);
 		
 	}
-
 
 	//3. 장바구니  수정 (수량)
 	public void requestUpdateOrderAmount() {
@@ -119,6 +119,13 @@ public class CartController {
 			new AlertView().alert("선택하신 주문을 장바구니에서 삭제 실패하였습니다.");
 		}
 		requestCartList();
+	}
+	
+	public void requestUserCartView() { //회원 장바구니 메뉴
+	
+		CartListView cartListView = new CartListView();
+		cartListView.userCartView();
+		
 	}
 
 }

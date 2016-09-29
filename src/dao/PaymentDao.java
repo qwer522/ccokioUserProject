@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controller.Controllers;
+import domain.Cart;
 import domain.NonUserPayment;
 import domain.UserPayment;
+import repository.CartRepository;
 import repository.LoginRepository;
 
 public class PaymentDao {
@@ -308,7 +310,9 @@ public class PaymentDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				userCoupon = rs.getInt(1);
+				if( rs.getInt(1) >= 10) {
+					userCoupon = 1;
+				}
 			}
 
 		} catch (SQLException e) {
@@ -325,12 +329,23 @@ public class PaymentDao {
 		return userCoupon;
 	}
 	
-//	public void couponUse() { //쿠폰을 사용
-//	
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		
-//		
-//	}
+	public ArrayList<Cart> selectCartList() { //장바구니 레파지토리 호출
+
+		return CartRepository.getCart();
+
+	}
+	
+	public boolean UserCouponUseNumber(int number) { //번호있는지 확인
+		
+		boolean success =false;
+		for(int i = 0 ; i < CartRepository.getCart().size() ; i ++) {
+			if(CartRepository.getCart().get(i).getCartNumber() == number) {
+				success = true;
+			}
+			
+		}
+		return success;
+		
+	}
 
 }
