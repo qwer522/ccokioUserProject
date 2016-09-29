@@ -33,7 +33,7 @@ public class PaymentController {
 		
 	}
 	
-	public void requestUseCouponAmount(int couponuseAmount, int couponuseNumber) { //쿠폰사용 개수 맞는지 확인
+	public void requestUseCouponAmount(int couponuseAmount, int couponuseNumber) { //쿠폰사용 개수 맞는지 확인 맞으면 사용된다
 
 		boolean success = paymentDao.CouponAmountUseNumber(couponuseAmount,couponuseNumber);
 		if(success) {
@@ -45,7 +45,7 @@ public class PaymentController {
 		
 	}
 
-	public void requestUserRegister() { //회원 결제 요청 처리를 위한 메서드
+	public void requestUserRegister() { //회원이 결제시 최초로 실행되는부분
 
 		int userCoupon = paymentDao.couponChecking(); //쿠폰확인
 		
@@ -61,11 +61,14 @@ public class PaymentController {
 
 		//쿠폰 사용을 위해 주문 db 불러오기 
 		Controllers.getCartController().requestLoadCartList();
-
 		ArrayList<Cart> carts = paymentDao.selectCartList();
+		
 		int couponHonorablyAmount = paymentDao.couponHonorablyAmount();
+		double totalPrice = paymentDao.totalPrice();
+		String userClass = paymentDao.userClass();
+		
 		PaymentCouponView paymentCouponView = new PaymentCouponView();
-		paymentCouponView.couponUseView(carts, couponHonorablyAmount);
+		paymentCouponView.couponUseView(carts, couponHonorablyAmount, userClass, totalPrice);
 
 	}
 	

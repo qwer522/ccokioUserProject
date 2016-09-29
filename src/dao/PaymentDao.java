@@ -343,6 +343,22 @@ public class PaymentDao {
 
 	}
 	
+	public String userClass() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
+
+		String userClass = null;
+		userClass = CartRepository.getUserClass();
+		return userClass;
+
+	}
+	
+	public double totalPrice() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
+
+		double totalPrice = 0;
+		totalPrice = CartRepository.getTotalPrice();
+		return totalPrice;
+
+	}
+	
 	public boolean couponUseNumber(int number) { //번호있는지 확인
 
 		boolean success =false;

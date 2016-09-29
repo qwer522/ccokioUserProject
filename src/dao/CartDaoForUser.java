@@ -22,6 +22,8 @@ public class CartDaoForUser {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int coupon = 0;
+		int sum = 0;
+		
 		try {
 
 			String sql = "select p.productName, o.orderAmount, p.productPrice, o.couponuseAmount from product p, userOrder o where o.userId = ? and o.productName = p.productName and o.paymentflag = 'n'";
@@ -38,6 +40,7 @@ public class CartDaoForUser {
 				cart.setOrderAmount(rs.getInt(2));
 				cart.setProductPrice(rs.getInt(3));
 				cart.setCouponuseAmount(rs.getInt(4));
+				cart.setProductPriceSum((rs.getInt(2) - rs.getInt(4)) * rs.getInt(3));
 				CartRepository.getCart().add(cart);	
 				
 			}
@@ -45,13 +48,18 @@ public class CartDaoForUser {
 			rs.close();
 			pstmt.close();
 			
-			sql = "select coupon from user1 where userId = ?";
+			sql = "select u.coupon, d.className, d.discount  from user1 u, discount d where userId = ? and udiscountClassNumber = userClass";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				coupon = rs.getInt(1);
 				CartRepository.setCoupon(coupon);
+				CartRepository.setUserClass(rs.getString(2));
+				for(int i = 0 ; i < CartRepository.getCart().size(); i++) {//총합산 계산
+				sum = sum + CartRepository.getCart().get(i).getProductPriceSum();
+				}
+				CartRepository.setTotalPrice(sum * rs.getDouble(3));
 			}
 			success = true;
 
