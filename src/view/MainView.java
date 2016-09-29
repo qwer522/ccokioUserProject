@@ -57,9 +57,9 @@ public class MainView {
 		}else if(userMainViewNumber == 2){
 			Controllers.getCartController().requestCartList();
 		}else if(userMainViewNumber == 3){
-
+			Controllers.getUserController().requestUserInfo();
 		}else if(userMainViewNumber == 4){
-
+			Controllers.getLoginController().requestLogout();
 		}else {
 			Controllers.getMainController().requestUserMainView();
 		}

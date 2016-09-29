@@ -1,9 +1,6 @@
-/view/
 /controller/
 /dao/
-/view/
 /domain/
-<<<<<<< HEAD
-=======
+/main/
 /repository/
->>>>>>> refs/remotes/origin/master
+/view/
