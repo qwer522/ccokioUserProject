@@ -58,15 +58,7 @@ public class MainView {
 		}else if(userMainViewNumber == 2){
 			Controllers.getCartController().requestCartList();
 		}else if(userMainViewNumber == 3){
-<<<<<<< HEAD
-
-			//시험삼아 결제 추가
-			
 			Controllers.getUserController().requestUserInfo();
-
-=======
-			Controllers.getUserController().requestUserInfo();
->>>>>>> refs/remotes/qwer522/master
 		}else if(userMainViewNumber == 4){
 			Controllers.getLoginController().requestLogout();
 		}else {
