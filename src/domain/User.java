@@ -8,9 +8,14 @@ public class User {
 	private String userPassword;
 	private String userTel;
 	private String userAddress;
-	private int userClass;
+	private String userClass;
 	private int coupon;
 	private int purchaseQuantity;
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	
 
 	public User(String userId, String userPassword, String userName, String userTel, String userAddress) {
 		this.userId = userId;
@@ -74,11 +79,11 @@ public class User {
 		this.userAddress = userAddress;
 	}
 
-	public int getUserClass() {
+	public String getUserClass() {
 		return userClass;
 	}
 
-	public void setUserClass(int userClass) {
+	public void setUserClass(String userClass) {
 		this.userClass = userClass;
 	}
 
@@ -99,3 +104,4 @@ public class User {
 	}
 
 }
+
