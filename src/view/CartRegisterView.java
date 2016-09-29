@@ -16,8 +16,8 @@ public class CartRegisterView {
 
 		int orderCount = 0;
 
-		System.out.println("주문 수량을 입력하세요.");
-		System.out.print("주문 수량 : ");
+		System.out.println("[*] 주문하실 수량을 입력해주세요 [*]");
+		System.out.print(  "[*] 주       문         수       량       [*] : ");
 
 		orderCount = keyboard.nextInt();		
 

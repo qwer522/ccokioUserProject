@@ -23,16 +23,16 @@ public class UserRegisterView {
 		String userTel = null;
 		String userAddress = null;
 
-		System.out.println("[회원 가입 모드]");
-		System.out.print("아이디 : ");
+		System.out.println("[*]   회   원      가   입      [*]");
+		System.out.print(  "[*]   아      이      디         [*] : ");
 		userId = keyboard.next();
-		System.out.print("비밀번호 : ");
+		System.out.print(  "[*]   비      밀   번    호     [*] : ");
 		userPassword = keyboard.next();
-		System.out.print("이름 : ");
+		System.out.print(  "[*]   이                  름      [*] : ");
 		userName = keyboard.next();
-		System.out.print("전화번호 : ");
+		System.out.print(  "[*]   전      화   번    호     [*] : ");
 		userTel = keyboard.next();
-		System.out.print("주소 : ");
+		System.out.print(  "[*]   주                  소      [*] : ");
 		userAddress = keyboard.next();
 
 		User newUser = new User(userId, userPassword, userName, userTel, userAddress);

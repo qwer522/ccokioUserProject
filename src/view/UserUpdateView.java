@@ -17,17 +17,17 @@ public class UserUpdateView {
 
 	public void userUpdate() {
 		
-		System.out.println("회원정보 수정");
+		System.out.println("[*]   회   원     수    정      [*]");
 		
-		System.out.print("수정할 비밀번호 : ");
+		System.out.print(  "[*]   비      밀   번    호     [*] : ");
 		String userPassword = keyboard.next();
 		
 		
-		System.out.print("수정할 전화번호");
+		System.out.print(  "[*]   전      화   번    호     [*] : ");
 		String userTel = keyboard.next();
 	
 		
-		System.out.print("수정할 주소지");
+		System.out.print(  "[*]   주                  소      [*] : ");
 		String userAddress = keyboard.next();
 		
 		User user = new User(userPassword, userTel, userAddress);

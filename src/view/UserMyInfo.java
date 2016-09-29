@@ -21,9 +21,9 @@ public class UserMyInfo {
 			//치킨 메뉴 호출해주기 설명없는 거로
 			Controllers.getUserController().requestUserinfoShowView();
 			
-			System.out.println("1. 내 정보 수정");
-			System.out.println("2. 회원 탈퇴");
-			System.out.println("3. 메인 매뉴로");
+			System.out.println("[1] 내    정     보     수    정");
+			System.out.println("[2] 회       원        탈      퇴");
+			System.out.println("[3] 메      인      매   뉴   로");
 
 			int number = keyboard.nextInt();
 			if(number == 1){

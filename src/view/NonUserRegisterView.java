@@ -22,12 +22,12 @@ public class NonUserRegisterView {
 		String nonUserTel = null;
 		String nonUserAddress = null;
 		
-		System.out.println("[비회원 주문 모드]");
-		System.out.print("이   름 : ");
+		System.out.println("[*] 비  회 원     주  문   [*] ");
+		System.out.print("[*]   이                 름     [*] :");
 		nonUserName = keyboard.next();
-		System.out.print("전화번호 : ");
+		System.out.print("[*]   전    화    번    호     [*] :");
 		nonUserTel = keyboard.next();
-		System.out.print("주   소 : ");
+		System.out.print("[*]   주                  소     [*] :");
 		nonUserAddress = keyboard.next();
 		
 		NonUser newNonUser = new NonUser(nonUserName, nonUserTel, nonUserAddress);

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-commit;
-=======
->>>>>>> refs/remotes/origin/master
 
 --테이블 보기
 select * from Admin1;

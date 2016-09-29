@@ -16,12 +16,12 @@ public class MainView {
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 
-		System.out.println("1. 메뉴 조회");
-		System.out.println("2. 로그인");
-		System.out.println("3. 비회원 주문");
-		System.out.println("4. 주문내역확인");
-		System.out.println("5. 회원가입");
-		System.out.println("0. 종료");
+		System.out.println("[1]  메  뉴  조  회  ");
+		System.out.println("[2]  로     그    인  ");
+		System.out.println("[3]  비회원  주 문  ");
+		System.out.println("[4]  주  문  내  역  ");
+		System.out.println("[5]  회  원  가  입  ");
+		System.out.println("[0]   종       료     ");
 
 		int mainViewNumber = keyboard.nextInt();
 		if(mainViewNumber == 1){
@@ -35,7 +35,7 @@ public class MainView {
 		}else if(mainViewNumber == 5){
 			Controllers.getUserController().requestRegister(); //회원가입
 		}else if(mainViewNumber == 0){
-			System.out.println("꼬끼오 프로그램을 종료합니다.");
+			System.out.println("[  꼬끼오 치킨 쇼핑을 종료합니다. ] ");
 			System.exit(0);
 		}else {
 			Controllers.getMainController().requestMainView();
@@ -46,10 +46,10 @@ public class MainView {
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 
-		System.out.println("1. 메뉴 조회");
-		System.out.println("2. 장바구니");
-		System.out.println("3. 내정보");
-		System.out.println("4. 로그아웃");
+		System.out.println("[1] 메  뉴  조  회  ");
+		System.out.println("[2] 장  바  구  니  ");
+		System.out.println("[3] 내     정    보  ");
+		System.out.println("[4] 로  그  아  웃  ");
 
 		int userMainViewNumber = keyboard.nextInt();
 		if(userMainViewNumber == 1){
@@ -70,9 +70,9 @@ public class MainView {
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 
-		System.out.println("1. 메뉴 조회");
-		System.out.println("2. 장바구니");
-		System.out.println("3. 메인화면");
+		System.out.println("[1] 메  뉴  조  회  ");
+		System.out.println("[2] 장  바  구  니  ");
+		System.out.println("[3] 메  인  화  면  ");
 
 		int nonUserMainViewNumber = keyboard.nextInt();
 		if(nonUserMainViewNumber == 1){
