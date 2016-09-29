@@ -53,16 +53,12 @@ public class MainView {
 
 		int userMainViewNumber = keyboard.nextInt();
 		if(userMainViewNumber == 1){
-
+			//시험삼아 결제 추가
+			Controllers.getPaymentController().requestUserRegister();
 		}else if(userMainViewNumber == 2){
 			Controllers.getCartController().requestCartList();
 		}else if(userMainViewNumber == 3){
-<<<<<<< HEAD
-			//시험삼아 결제 추가
-			Controllers.getPaymentController().requestUserRegister();
-=======
 			Controllers.getUserController().requestUserInfo();
->>>>>>> origin/master
 		}else if(userMainViewNumber == 4){
 			Controllers.getLoginController().requestLogout();
 		}else {

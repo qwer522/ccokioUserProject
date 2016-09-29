@@ -380,7 +380,7 @@ public class PaymentDao {
 							
 							sql = "update UserOrder set couponuseAmount = ? where userId = ? and paymentflag = 'n' ";
 							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-							pstmt.setInt(1, couponuseAmount);
+							pstmt.setInt(1, CartRepository.getCart().get(i).getCouponuseAmount() + couponuseAmount);
 							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
 							pstmt.executeUpdate();
 
