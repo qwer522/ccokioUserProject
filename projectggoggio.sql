@@ -9,6 +9,11 @@ select * from User1;
 select * from NonUserPayment;
 select * from NonUserOrder;
 select * from NonUser;
+select * from discount;
+
+select o.userOrderNumber, p.productName, o.orderAmount, p.productPrice, o.couponuseAmount
+from product p, userOrder o 
+where o.userId = 'qwer522' and o.productName = p.productName and o.paymentflag = 'n';
 
 --테이블삭제
 drop table Admin1t;
@@ -20,7 +25,7 @@ drop table User1;
 drop table NonUserPayment;
 drop table NonUserOrder;
 drop table NonUser;
-
+drop table discount;
 --시퀀스 삭제
 drop sequence Product_ProductNumber_seq;
 drop sequence Managers_managerNumber_seq;
@@ -56,8 +61,8 @@ create table Product
   productOrigin varchar2(50) not null
 );
 
-insert into Product(productnumber, productName, productCommant, productPrice, productOrigin) values(1, '과자', '11', 11, '111'); 
-select * from product;
+insert into Product values(1, '표창', '닌자', 2000, '시골');
+commit;
 
 --회원 (1넣은이유는 user이란게 시스템에있어서)
 create table User1
@@ -68,11 +73,26 @@ create table User1
   userName varchar2(50) not null,
   userTel varchar2(50) not null,
   userAddress varchar2(50) not null,
-  userClass int default 1 not null,
+  userClass int references discount(udiscountClassNumber),
   coupon int default 0 not null,
   purchaseQuantity int default 0 not null
 );
+
+--할인율 테이블
+create table discount
+(
+  udiscountClassNumber int PRIMARY key,
+  className varchar2(20),
+  discount float
+);
+--할인율 기본 추가 자료
+insert into discount values(1,'실버', 0.9);
+insert into discount values(2,'골드', 0.85);
+insert into discount values(3,'플래티넘', 0.8);
+
 insert into user1(userNumber, userId, userPassword, userName, userTel, userAddress) values('1','1','1','1','1','1');
+update User1 set coupon = 32 where userId = 'qwer522';
+commit;
 select * from user1 where userId = '1' and userPassword = '1';
 --회원 주문
 create table UserOrder
@@ -81,22 +101,12 @@ create table UserOrder
   userId varchar2(50) references user1(userId),
   productName varchar2(50) references product(productName),
   orderAmount int not null,
-  UserAddress varchar2(50)  not null,
-  orderDate ,
-  paymentflag VARCHAR2(5) default 'n'
+  paymentflag VARCHAR2(5) default 'n',
+  couponuseAmount int default 0
 );
-<<<<<<< HEAD
-insert into userorder values(1, '1', '과자', 11, '11-11', 'n'); 
-select * from userorder;
-drop table userorder;
 
-select o.userOrderNumber, p.productName, o.orderAmount, p.productPrice
-from product p, userOrder o, user1 u
-where o.userId = 1 and o.productName = p.productName 
-and o.paymentflag = 'n';
-
-=======
->>>>>>> refs/remotes/origin/master
+insert into UserOrder values(1, 'qwer522', '표창', 20, 'n', 0);
+commit;
 
 --회원 결제
 create table UserPayment
@@ -106,6 +116,7 @@ create table UserPayment
   paymentDate Date default sysdate,
   primary key(userPaymentNumber,userOrderNumber)
 );
+
 --비회원
 create table NonUser
 (
@@ -121,17 +132,16 @@ create table NonUserOrder
   nonUserTel varchar2(50) references NonUser(nonUserTel),
   productName varchar2(50) references product(productName),
   orderAmount int not null,
-  nonUserAddress varchar2(50)  not null,
   paymentflag VARCHAR2(5) default 'n'
 );
 
 --비회원 결제
 create table NonUserPayment
 (
-  nonUserPaymentNumer int,
+  nonUserPaymentNumber int,
   nonUserOrderNumber int,
   paymentDate Date default sysdate,
-  primary key(nonUserPaymentNumer, nonUserOrderNumber)
+  primary key(nonUserPaymentNumber, nonUserOrderNumber)
 );
 
 --Manager번호 시퀀스
