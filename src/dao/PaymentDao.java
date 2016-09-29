@@ -71,7 +71,7 @@ public class PaymentDao {
 			sql = "select orderAmount from UserOrder where paymentflag = 'y' and userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 
 			while(rs.next()){ //수량 누적증가시키기
 				orderAmountSum = orderAmountSum + rs.getInt(1);
@@ -92,7 +92,7 @@ public class PaymentDao {
 			sql = "select coupon from User1 where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				coupon = rs.getInt(1);
 			}
@@ -296,19 +296,19 @@ public class PaymentDao {
 
 		return nonUserPayments;
 	}
-	
+
 	public int couponChecking() { //쿠폰개수 확인
 		int userCoupon = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 
 			String sql = "select coupon from User1 where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
 				if( rs.getInt(1) >= 10) {
 					userCoupon = 1;
@@ -325,27 +325,79 @@ public class PaymentDao {
 				try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}
 			}
 		}
-		
+
 		return userCoupon;
 	}
-	
+
 	public ArrayList<Cart> selectCartList() { //장바구니 레파지토리 호출
 
 		return CartRepository.getCart();
 
 	}
 	
-	public boolean UserCouponUseNumber(int number) { //번호있는지 확인
-		
+	public int couponHonorablyAmount() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
+
+		int couponHonorablyAmount = 0;
+		couponHonorablyAmount = CartRepository.getCoupon();
+		return couponHonorablyAmount;
+
+	}
+	
+	public boolean couponUseNumber(int number) { //번호있는지 확인
+
 		boolean success =false;
 		for(int i = 0 ; i < CartRepository.getCart().size() ; i ++) {
 			if(CartRepository.getCart().get(i).getCartNumber() == number) {
 				success = true;
 			}
-			
+
 		}
 		return success;
-		
+
+	}
+
+	public boolean CouponAmountUseNumber(int couponuseAmount, int couponuseNumber) { //쿠폰개수 맞는지 확인
+
+		boolean success =false;
+		PreparedStatement pstmt = null;
+
+		if(CartRepository.getCoupon()/10 >= couponuseAmount) { //쿠폰개수가 더많으면 실행 나누기한이유는 셀렉트할때 그대로 총개수를 가지고와서 몫만나오게 10나눔
+
+			for(int i = 0 ; i < CartRepository.getCart().size() ; i ++) {//쿠폰사용될번호를 레파지토리에서 찾은후 수량을 가져온다
+				if(CartRepository.getCart().get(i).getCartNumber() == couponuseNumber) { //찾으면 시행
+					if(CartRepository.getCart().get(i).getOrderAmount() >= couponuseAmount) {//쿠폰 개수와 결제될 수량과의 개수 확인
+						CartRepository.setCoupon(CartRepository.getCoupon() - couponuseAmount*10);
+						//사용된 쿠폰 개수 확인후 다시 디비에 저장
+						try { 
+
+							String sql = "update user1 set coupon = ? where userId = ? ";
+							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+							pstmt.setInt(1, CartRepository.getCoupon());
+							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
+							pstmt.executeUpdate();
+							
+							pstmt.close();
+							
+							sql = "update UserOrder set couponuseAmount = ? where userId = ? and paymentflag = 'n' ";
+							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+							pstmt.setInt(1, couponuseAmount);
+							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
+							pstmt.executeUpdate();
+
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}finally {
+							if(pstmt != null) {
+								try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+							}
+						}
+						success = true;
+					}
+				}
+			}
+
+		}
+		return success;
 	}
 
 }
