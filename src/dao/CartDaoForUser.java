@@ -17,16 +17,14 @@ public class CartDaoForUser {
 	}
 	// 0. 처음 로그인 시 DB에 있는 결제되지 않은 주문목록 장바구니로 불러오기
 	public boolean loadCartList() {
-
+		
 		boolean success = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		int coupon = 0;
 		try {
 
-			String sql = "select o.userOrderNumber, p.productName, o.orderAmount, p.productPrice "
-					+ "from product p, userOrder o "
-					+ "where o.userId = ? and o.productName = p.productName and o.paymentflag = 'n'";
+			String sql = "select p.productName, o.orderAmount, p.productPrice, o.couponuseAmount from product p, userOrder o where o.userId = ? and o.productName = p.productName and o.paymentflag = 'n'";
 			
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
@@ -34,13 +32,26 @@ public class CartDaoForUser {
 
 			while (rs.next()) {
 				Cart cart = new Cart();
-
-//				CartRepository.setCartNumber(CartRepository.getCartNumber() + 1);
-				cart.setCartNumber(CartRepository.getCartNumber() + 1);
-				cart.setProductName(rs.getString(2));
-				cart.setOrderAmount(rs.getInt(3));
-				cart.setProductPrice(rs.getInt(4));
+				CartRepository.setCartNumber(CartRepository.getCartNumber() + 1);
+				cart.setCartNumber(CartRepository.getCartNumber());
+				cart.setProductName(rs.getString(1));
+				cart.setOrderAmount(rs.getInt(2));
+				cart.setProductPrice(rs.getInt(3));
+				cart.setCouponuseAmount(rs.getInt(4));
 				CartRepository.getCart().add(cart);	
+				
+			}
+			
+			rs.close();
+			pstmt.close();
+			
+			sql = "select coupon from user1 where userId = ?";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				coupon = rs.getInt(1);
+				CartRepository.setCoupon(coupon);
 			}
 			success = true;
 
@@ -92,8 +103,8 @@ public class CartDaoForUser {
 					}
 				}
 
-				// CartRepository.setCartNumber(CartRepository.getCartNumber()+1);
-				cart.setCartNumber(CartRepository.getCartNumber() + 1);
+				CartRepository.setCartNumber(CartRepository.getCartNumber() + 1);
+				cart.setCartNumber(CartRepository.getCartNumber());
 				cart.setProductName(rs.getString(1));
 				cart.setProductPrice(rs.getInt(2));
 				cart.setOrderAmount(orderCount);

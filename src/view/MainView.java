@@ -57,7 +57,8 @@ public class MainView {
 		}else if(userMainViewNumber == 2){
 			Controllers.getCartController().requestCartList();
 		}else if(userMainViewNumber == 3){
-
+			//시험삼아 결제 추가
+			Controllers.getPaymentController().requestUserRegister();
 		}else if(userMainViewNumber == 4){
 
 		}else {

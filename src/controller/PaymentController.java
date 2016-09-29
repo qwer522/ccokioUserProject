@@ -20,54 +20,67 @@ public class PaymentController {
 
 	}
 
-	public void requestUserRegisterCouponChecking() { //회원 결제시 쿠폰 확인
+	public void requestCouponUseNumber(int couponuseNumber) { //쿠폰사용될번호가 있는지 확인
 
-
-		int userCoupon = paymentDao.couponChecking();
-		if(userCoupon == 1){ // 쿠폰이 10개 이상이면 실행
+		boolean success = paymentDao.couponUseNumber(couponuseNumber);
+		if(success) {
 			PaymentCouponView paymentCouponView = new PaymentCouponView();
-			paymentCouponView.couponUseCheckingView();
-		}else { //10개 이하이면 바로 결제시행
-			requestUserRegister();
+			paymentCouponView.couponAmountUseView(couponuseNumber);
+		}else {
+			new AlertView().alert("쿠폰사용될 번호가 없습니다.");
+			requestUserCouponUse();
 		}
-
-	}
-
-	public void requestUserCouponUse() { //쿠폰을 사용한다.
-
-		//쿠폰 사용을 위해 주문 db 불러오기 
-		Controllers.getCartController().requestLoadCartList();
-
-		ArrayList<Cart> carts = paymentDao.selectCartList();
-
-		PaymentCouponView paymentCouponView = new PaymentCouponView();
-		paymentCouponView.couponUseView(carts);
-
+		
 	}
 	
-	public void requestUserCouponUseNumber(int number) { //쿠폰을 사용한다.
+	public void requestUseCouponAmount(int couponuseAmount, int couponuseNumber) { //쿠폰사용 개수 맞는지 확인
 
-		boolean success = paymentDao.UserCouponUseNumber(number);
+		boolean success = paymentDao.CouponAmountUseNumber(couponuseAmount,couponuseNumber);
 		if(success) {
-			
+			requestUserCouponUse();
 		}else {
-			
+			new AlertView().alert("쿠폰 부족 또는 수량보다 쿠폰이 많습니다.");
+			requestUserCouponUse();
 		}
 		
 	}
 
 	public void requestUserRegister() { //회원 결제 요청 처리를 위한 메서드
 
-		boolean success = paymentDao.userRegister();
-
-		if(success) {
-			new AlertView().alert("결제처리가 완료되었습니다.");
-			// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
-		}else {//오류
-			new AlertView().alert("결제 오류");
+		int userCoupon = paymentDao.couponChecking(); //쿠폰확인
+		
+		if(userCoupon == 1){ // 쿠폰이 10개 이상이면 실행
+			requestUserCouponUse();
+		}else { //10개 이하이면 바로 결제시행
+			requestUserRegisterProcessing();
 		}
-		Controllers.getMainController().requestUserMainView();
 
+	}
+	
+	public void requestUserCouponUse() { //db 불러와서 보여준다 쿠폰사용을 위해
+
+		//쿠폰 사용을 위해 주문 db 불러오기 
+		Controllers.getCartController().requestLoadCartList();
+
+		ArrayList<Cart> carts = paymentDao.selectCartList();
+		int couponHonorablyAmount = paymentDao.couponHonorablyAmount();
+		PaymentCouponView paymentCouponView = new PaymentCouponView();
+		paymentCouponView.couponUseView(carts, couponHonorablyAmount);
+
+	}
+	
+	public void requestUserRegisterProcessing () { //회원 결제 요청 처리 실행
+
+			boolean success = paymentDao.userRegister();
+
+			if(success) {
+				new AlertView().alert("결제처리가 완료되었습니다.");
+				// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+			}else {//오류
+				new AlertView().alert("결제 오류");
+			}
+			Controllers.getMainController().requestUserMainView();
+		
 	}
 
 	public void requestNonUserRegister() { //비회원 결제 요청 처리를 위한 메서드
