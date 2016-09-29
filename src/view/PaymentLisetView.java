@@ -14,7 +14,7 @@ public class PaymentLisetView {
 
 	public void userPaymentList(ArrayList<UserPayment> userPayments) { //회원결제목록 보기
 
-		System.out.println("[결제 내역 정보 조회]");
+		System.out.println("[*]  결   제    내    역    정  보    조   회  [*]");
 		System.out.println("결제번호\tID\t주문번호\t제품이름\t수량\t가격\t주문날짜");
 		for(int i = 0 ; i < userPayments.size(); i++) {
 
@@ -32,7 +32,7 @@ public class PaymentLisetView {
 
 	public void nonUserPaymentList(ArrayList<NonUserPayment> nonUserPayments) {//비회원결제목록 보기
 
-		System.out.println("[결제 내역 정보 조회]");
+		System.out.println("[*] 결    제    내   역  정    보    조   회  [*]");
 		System.out.println("결제번호\t비회원Tel\t주문번호\t제품이름\t수량\t가격\t주문날짜");
 		for(int i = 0 ; i < nonUserPayments.size(); i++) {
 

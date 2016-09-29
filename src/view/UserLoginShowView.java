@@ -16,7 +16,7 @@ public class UserLoginShowView {
 	
 	public void userLoginInfoView(User searchedUser){
 		
-		System.out.println("\n\t 내 정보");
+		System.out.println("\n\t [*]  내        정        보      [*]");
 		System.out.println("이름\t전화번호\t주소\t등급\t쿠폰\t구매량");
 		
 		System.out.print(searchedUser.getUserName() + "\t");
