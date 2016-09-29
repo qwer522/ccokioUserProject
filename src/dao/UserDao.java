@@ -36,7 +36,7 @@ public class UserDao {
 
 			pstmt.close();
 			// DB 테이블에 회원 데이터 삽입
-			sql = "insert into User1(userNumber, userId, userPassword, userName, userTel, userAddress) values(User1_userNumber_seq.nextval, ?, ?, ?, ?, ?)";
+			sql = "insert into User1(userNumber, userId, userPassword, userName, userTel, userAddress, userClass) values(User1_userNumber_seq.nextval, ?, ?, ?, ?, ?, 1)";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, newUser.getUserId());
 			pstmt.setString(2, newUser.getUserPassword());

@@ -9,11 +9,29 @@ public class CartRepository {
 	private static ArrayList<Cart> cart;
 	private static int cartNumber;
 	private static int coupon;
-	
+	private static String userClass;
+	private static double totalPrice;
+
 	public CartRepository() {
-		
+
 		cart = new ArrayList<Cart>();
 		cartNumber = 0;
+	}
+
+	public static double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public static void setTotalPrice(double tatolPrice) {
+		CartRepository.totalPrice = tatolPrice;
+	}
+
+	public static String getUserClass() {
+		return userClass;
+	}
+
+	public static void setUserClass(String userClass) {
+		CartRepository.userClass = userClass;
 	}
 
 	public static int getCoupon() {
@@ -39,5 +57,5 @@ public class CartRepository {
 	public static void setCartNumber(int cartNumber) {
 		CartRepository.cartNumber = cartNumber;
 	}
-	
+
 }

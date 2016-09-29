@@ -61,11 +61,14 @@ public class PaymentController {
 
 		//쿠폰 사용을 위해 주문 db 불러오기 
 		Controllers.getCartController().requestLoadCartList();
-
 		ArrayList<Cart> carts = paymentDao.selectCartList();
+		
 		int couponHonorablyAmount = paymentDao.couponHonorablyAmount();
+		double totalPrice = paymentDao.totalPrice();
+		String userClass = paymentDao.userClass();
+		
 		PaymentCouponView paymentCouponView = new PaymentCouponView();
-		paymentCouponView.couponUseView(carts, couponHonorablyAmount);
+		paymentCouponView.couponUseView(carts, couponHonorablyAmount, userClass, totalPrice);
 
 	}
 	

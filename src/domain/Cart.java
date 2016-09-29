@@ -6,19 +6,29 @@ public class Cart {
 	private String productName;
 	private int orderAmount;
 	private int productPrice;
-	private int couponuseAmount;
+	private int couponuseAmount;//쿠폰 사용 개수
+	private int productPriceSum;
 	
 	public Cart() {
 		
 	}
 	
-	public Cart(int cartNumber, String productName, int orderAmount, int productPrice, int couponuseAmount) {
+	public Cart(int cartNumber, String productName, int orderAmount, int productPrice, int couponuseAmount, int productPriceSum) {
 		
 		this.cartNumber = cartNumber;
 		this.productName = productName;
 		this.orderAmount = orderAmount;
 		this.productPrice = productPrice;
 		this.couponuseAmount = couponuseAmount;
+		this.productPriceSum = productPriceSum;
+	}
+	
+	public int getProductPriceSum() {
+		return productPriceSum;
+	}
+
+	public void setProductPriceSum(int productPriceSUm) {
+		this.productPriceSum = productPriceSUm;
 	}
 
 	public int getCouponuseAmount() {
