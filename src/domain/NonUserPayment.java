@@ -8,7 +8,7 @@ public class NonUserPayment {
 	private String productName;  //상품이름
 	private int orderAmount;     //주문 수량
 	private int proudctPrice;    //상품 가격
-	private int orderSum;        //주문번호의 수량 * 가격   합계
+	private int orderSum;        //수량과 가격 곱한값
 	private String paymentDate;  //날짜
 	
 	public NonUserPayment() {
@@ -33,12 +33,36 @@ public class NonUserPayment {
 		this.paymentDate = paymentDate;
 	}
 
+	public int getPaymentNumber() {
+		return paymentNumber;
+	}
+
+	public void setPaymentNumber(int paymentNumber) {
+		this.paymentNumber = paymentNumber;
+	}
+
 	public String getNonUserTel() {
 		return nonUserTel;
 	}
 
 	public void setNonUserTel(String nonUserTel) {
 		this.nonUserTel = nonUserTel;
+	}
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public int getOrderAmount() {
@@ -65,46 +89,6 @@ public class NonUserPayment {
 		this.orderSum = orderSum;
 	}
 
-	public int getPaymentNumber() {
-		return paymentNumber;
-	}
-
-	public void setPaymentNumber(int paymentNumber) {
-		this.paymentNumber = paymentNumber;
-	}
-
-	public String getUserId() {
-		return nonUserTel;
-	}
-
-	public void setUserId(String nonUserTel) {
-		this.nonUserTel = nonUserTel;
-	}
-
-	public int getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public int getOrderCount() {
-		return orderAmount;
-	}
-
-	public void setOrderCount(int orderAmount) {
-		this.orderAmount = orderAmount;
-	}
-
 	public String getPaymentDate() {
 		return paymentDate;
 	}
@@ -112,7 +96,5 @@ public class NonUserPayment {
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
 	}
-
-
 	
 }

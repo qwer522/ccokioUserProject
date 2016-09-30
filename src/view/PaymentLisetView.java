@@ -30,7 +30,7 @@ public class PaymentLisetView {
 			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
 			break;
 		case 2:
-
+			
 			break;
 		default:
 			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
@@ -92,10 +92,10 @@ public class PaymentLisetView {
 		for(int i = 0 ; i < nonUserPayments.size(); i++) {
 
 			System.out.print(nonUserPayments.get(i).getPaymentNumber() + "\t");
-			System.out.print(nonUserPayments.get(i).getUserId() + "\t");
+			System.out.print(nonUserPayments.get(i).getNonUserTel() + "\t");
 			System.out.print(nonUserPayments.get(i).getOrderNumber() + "\t");
 			System.out.print(nonUserPayments.get(i).getProductName() + "\t");
-			System.out.print(nonUserPayments.get(i).getOrderCount() + "\t");
+			System.out.print(nonUserPayments.get(i).getOrderAmount() + "\t");
 			System.out.print(nonUserPayments.get(i).getProudctPrice() + "\t");
 			System.out.print(nonUserPayments.get(i).getOrderSum() + "\t");
 			System.out.println(nonUserPayments.get(i).getPaymentDate());

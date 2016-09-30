@@ -11,7 +11,7 @@ public class UserPayment {
 	private int couponuseAmount; //사용된 쿠폰
 	private int productPrice;    //상품가격
 	private String paymentDate;  //주문 날짜
-	private double orderSum;        //상품가격
+	private double orderSum;     //수량과 가격 곱한값
 	
 	
 	public UserPayment() {

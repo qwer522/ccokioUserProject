@@ -278,10 +278,10 @@ public class PaymentDao {
 
 				nonUserPayment = new NonUserPayment();
 				nonUserPayment.setPaymentNumber(rs.getInt(1));
-				nonUserPayment.setUserId(rs.getString(2));
+				nonUserPayment.setNonUserTel(rs.getString(2));
 				nonUserPayment.setOrderNumber(rs.getInt(3));
 				nonUserPayment.setProductName(rs.getString(4));
-				nonUserPayment.setOrderCount(rs.getInt(5));
+				nonUserPayment.setOrderAmount(rs.getInt(5));
 				nonUserPayment.setProudctPrice(rs.getInt(6));
 				nonUserPayment.setOrderSum(rs.getInt(7));
 				nonUserPayment.setPaymentDate(rs.getString(8));
