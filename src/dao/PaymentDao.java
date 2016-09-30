@@ -222,7 +222,7 @@ public class PaymentDao {
 
 		try {
 
-			sql = "select * from payment4_view_paymentInfor where userId = ?";
+			sql = "select * from Userpayment_view_paymentInfor where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
@@ -238,9 +238,10 @@ public class PaymentDao {
 				userPayment.setOrderCount(rs.getInt(6));
 				userPayment.setCouponuseAmount(rs.getInt(7));
 				userPayment.setProductPrice(rs.getInt(8));
-				userPayment.setOrderSum(rs.getInt(9));
-				userPayment.setPaymentDate(rs.getString(10));
+				userPayment.setOrderSum(rs.getDouble(10));
+				userPayment.setPaymentDate(rs.getString(9));
 				userPayments.add(userPayment);
+				
 			}
 
 		} catch (SQLException e) {

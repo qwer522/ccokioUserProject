@@ -60,7 +60,7 @@ public class CartListView {
 			break;
 		case 2:
 			new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
-
+			Controllers.getOrderUserController().requestOrderRegister();
 			break;
 		case 3:
 			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 수정을 요청함.");

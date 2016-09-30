@@ -11,7 +11,7 @@ public class UserPayment {
 	private int couponuseAmount; //사용된 쿠폰
 	private int productPrice;    //상품가격
 	private String paymentDate;  //주문 날짜
-	private int orderSum;        //상품가격
+	private double orderSum;        //상품가격
 	
 	
 	public UserPayment() {
@@ -27,7 +27,7 @@ public class UserPayment {
 	
 
 	public UserPayment(int paymentNumber, String userId, String userClass, int orderNumber, String productName,
-			int orderAmount, int couponuseAmount, int productPrice, String paymentDate, int orderSum) {
+			int orderAmount, int couponuseAmount, int productPrice, String paymentDate, double orderSum) {
 		this.paymentNumber = paymentNumber;
 		this.userId = userId;
 		this.userClass = userClass;
@@ -72,11 +72,11 @@ public class UserPayment {
 		this.orderAmount = orderAmount;
 	}
 
-	public int getOrderSum() {
+	public double getOrderSum() {
 		return orderSum;
 	}
 
-	public void setOrderSum(int orderSum) {
+	public void setOrderSum(double orderSum) {
 		this.orderSum = orderSum;
 	}
 

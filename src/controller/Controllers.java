@@ -10,6 +10,9 @@ public class Controllers {
 	private static UserController userController;
 	private static NonUserController nonUserController;
 	private static ProductController productController;
+	private static OrderUserController orderUserController;
+	private static OrderNonUserController orderNonUserController;
+	
 	public Controllers() {
 		loginController = new LoginController();
 		mainController = new MainController();
@@ -19,6 +22,17 @@ public class Controllers {
 		userController = new UserController();
 		nonUserController = new NonUserController();
 		productController = new ProductController();
+		orderUserController = new OrderUserController();
+		orderNonUserController = new OrderNonUserController();
+		
+	}
+
+	public static OrderUserController getOrderUserController() {
+		return orderUserController;
+	}
+
+	public static OrderNonUserController getOrderNonUserController() {
+		return orderNonUserController;
 	}
 
 	public static LoginController getLoginController() {

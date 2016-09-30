@@ -12,24 +12,28 @@ public class PaymentLisetView {
 
 	private Scanner keyboard;
 
-	public void paymentListView() {
+	public PaymentLisetView() {
 		keyboard = new Scanner(System.in);
+
 	}
 
 	public void checkingUserOrNonUser() { //결제확인을 위한 회원인지 비회원인지 선택
 
-		while(true) {
-			System.out.println("1. 회원");
-			System.out.println("2. 비회원");
-			int number = keyboard.nextInt();
+		System.out.println("1. 회원");
+		System.out.println("2. 비회원");
 
-			if(number == 1) {
+		int checkingNumber = keyboard.nextInt();
 
-			}else if(number == 2) {
+		switch (checkingNumber) {
 
-			}else {
+		case 1:
+			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
+			break;
+		case 2:
 
-			}
+			break;
+		default:
+			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
 
 		}
 
@@ -41,7 +45,7 @@ public class PaymentLisetView {
 
 		System.out.print("ID : ");
 		String loginId = keyboard.next();
-		
+
 		System.out.print("Password : ");
 		String loginPassword = keyboard.next();
 
@@ -53,10 +57,11 @@ public class PaymentLisetView {
 
 	public void userPaymentList(ArrayList<UserPayment> userPayments) { //회원결제목록 보기
 
-		int sum = 0;
-
+		double sum = 0;
+		System.out.println();
 		System.out.println("[*]  결   제    내    역    정  보    조   회  [*]");
-		System.out.println("[*]     등급   별로   할인   적용           [*]");
+		System.out.println("        등급   별로   할인   적용           ");
+		System.out.println();
 		System.out.println("결제번호\tID\t회원등급\t주문번호\t제품이름\t수량\t사용한쿠폰\t가격\t합계\t주문날짜");
 		for(int i = 0 ; i < userPayments.size(); i++) {
 

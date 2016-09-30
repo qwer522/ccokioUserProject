@@ -38,7 +38,7 @@ public class MainView {
 		}else if(mainViewNumber == 5){ //회원가입
 			Controllers.getUserController().requestRegister();
 		}else if(mainViewNumber == 6){ //결제확인
-			Controllers.getPaymentController().requestUserPaymentList();
+			Controllers.getPaymentController().requestPaymentList();
 		}else if(mainViewNumber == 0){ //종료
 			System.out.println("[  꼬끼오 치킨 쇼핑을 종료합니다. ] ");
 			System.exit(0);

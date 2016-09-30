@@ -20,7 +20,7 @@ public class PaymentCouponView {
 
 		System.out.println("\n   [*]  쿠  폰   사   용       가   능  목    록[*]\n");
 		System.out.println("할인율 실버 : 10% , 골드 : 15%, 플래티넘 : 20%");
-		System.out.println("현재 나의 등급 : " + userClass);
+		System.out.println("현재 나의 등급 : " + userClass + "\t");
 		System.out.println("번호   제품이름\t수량\t사용된쿠폰개수\t가격\t합계금액");
 
 		if (carts.size() == 0) {
