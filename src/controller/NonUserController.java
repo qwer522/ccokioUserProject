@@ -25,11 +25,11 @@ public class NonUserController {
 
 	public void requestReturnNonUserRegister(NonUser newNonUser) { //비회원 db에없을시 추가
 		
-		
 		boolean success = nonUserDao.nonUserLogIn(newNonUser);//db에 등록된 비회원이 있는지 확인한다
 		
 		if (success) {//있으면 로그인됨
 			new AlertView().alert("비회원 DB에 있어서 로그인 바로 됨");
+			Controllers.getCartNonUserController().requestloadCartNonUserList();
 			Controllers.getMainController().requestNonUserMainView();
 		} else {//없으면 비회원 db에 추가 (관리자가 보기위해)
 			success = false;

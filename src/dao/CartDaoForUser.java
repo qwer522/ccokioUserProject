@@ -26,7 +26,7 @@ public class CartDaoForUser {
 		
 		try {
 
-			String sql = "select p.productName, o.orderAmount, p.productPrice, o.couponuseAmount from product p, userOrder o where o.userId = ? and o.productName = p.productName and o.paymentflag = 'n'";
+			String sql = "select * from UserOrder_view_Infor where userId = ?";
 			
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());

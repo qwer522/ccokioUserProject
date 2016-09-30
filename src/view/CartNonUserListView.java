@@ -6,11 +6,11 @@ import java.util.Scanner;
 import controller.Controllers;
 import domain.Cart;
 
-public class CartListView {
-
-	private Scanner keyboard;
+public class CartNonUserListView {
 	
-	public CartListView() {
+private Scanner keyboard;
+	
+	public CartNonUserListView() {
 
 		keyboard = new Scanner(System.in);
 		
@@ -48,13 +48,11 @@ public class CartListView {
 		System.out.println("[3] 수량 수정   ");
 		System.out.println("[4] 장바구니 상품 삭제  ");
 		
-		
-		
 		int selectedMenu = keyboard.nextInt();
 
 		switch (selectedMenu) {
 		case 1:
-			Controllers.getMainController().requestUserMainView();
+			Controllers.getMainController().requestNonUserMainView();
 			break;
 		case 2:
 			new AlertView().alert("주문 컨트롤러에 주문를 요청함.");

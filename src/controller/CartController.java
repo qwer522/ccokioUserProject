@@ -60,10 +60,10 @@ public class CartController {
 	public void requestCartList() {
 
 		ArrayList<Cart> carts = CartDaoForUser.selectCartList();
-		
+
 		CartListView cartListView = new CartListView();
 		cartListView.printCartList(carts);
-		
+
 	}
 
 	//3. 장바구니  수정 (수량)
@@ -120,12 +120,12 @@ public class CartController {
 		}
 		requestCartList();
 	}
-	
+
 	public void requestUserCartView() { //회원 장바구니 메뉴
-	
+
 		CartListView cartListView = new CartListView();
 		cartListView.userCartView();
-		
+
 	}
 
 }

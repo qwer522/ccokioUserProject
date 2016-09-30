@@ -94,7 +94,7 @@ insert into discount values(3,'플래티넘', 0.8);
 insert into user1(userNumber, userId, userPassword, userName, userTel, userAddress) values('1','1','1','1','1','1');
 update User1 set coupon = 32 where userId = 'qwer522';
 commit;
-select * from user1 where userId = '1' and userPassword = '1';
+
 --회원 주문
 create table UserOrder
 (
@@ -173,17 +173,35 @@ create sequence NonUser_paymentNumber_seq nomaxvalue;
 --회원 결제목록 뷰
 create view Userpayment_view_paymentInfor
 as
-select pay.userPaymentNumber, o.userId, o.userOrderNumber, p.productName, o.orderAmount, p.productPrice, pay.paymentDate 
-from Userorder o, product p, Userpayment pay
-where p.productName = o.productName and o.paymentflag = 'y';
+select pay.userPaymentNumber, o.userId, d.className, o.userOrderNumber, p.productName, o.orderAmount, o.couponuseAmount, p.productPrice, pay.paymentDate, (((o.orderAmount - o.couponuseAmount)*p.productPrice)* d.DISCOUNT) as orderSum
+from Userorder o, product p, Userpayment pay, discount d, user1 u
+where p.productName = o.productName and o.paymentflag = 'y' and d.udiscountClassNumber = u.userClass and pay.userOrderNumber = o.userOrderNumber;
 
 drop view Userpayment_view_paymentInfor;
+
+--회원 주문목록 뷰
+create view UserOrder_view_Infor
+as
+select p.productName, o.orderAmount, p.productPrice, o.couponuseAmount, u.userId
+from product p, userOrder o , user1 u
+where o.productName = p.productName and o.paymentflag = 'n';
+
+drop view UserOrder_view_Infor;
 
 --비회원 결제목록 뷰
 create view Nonuserpay_view_paymentInfor
 as
-select pay.nonUserPaymentNumer, o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, pay.paymentDate 
+select pay.nonUserPaymentNumer , o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, o.orderAmount * p.productPrice as orderSum, pay.paymentDate 
 from NonUserOrder o, product p, NonUserPayment pay
 where p.productName = o.productName and o.paymentflag = 'y';
 
 drop view Nonuserpay_view_paymentInfor;
+
+--비회원 주문목록 뷰
+create view NonUserOrder_view_Infor
+as
+select p.productName, o.orderAmount, p.productPrice, p.productPrice * o.orderAmount as orderSum ,u.nonUserTel
+from product p, NonUserOrder o, NonUser u
+where o.productName = p.productName and o.paymentflag = 'n';
+
+drop view NonUserOrder_view_Infor;
