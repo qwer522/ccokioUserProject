@@ -52,22 +52,21 @@ private Scanner keyboard;
 			
 			int selectedMenu = keyboard.nextInt();
 
-<<<<<<< HEAD
 			switch (selectedMenu) {
 			case 1:
 				Controllers.getMainController().requestNonUserMainView();
 				break;
 			case 2:
 				new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
-				Controllers.getOrderUserController().requestOrderRegister();
+				Controllers.getOrderNonUserController().requestOrderRegister();
 				break;
 			case 3:
 				new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 수정을 요청함.");
-				Controllers.getCartController().requestUpdateOrderAmount(); 
+				Controllers.getCartNonUserController().requestNonUserUpdateOrderAmount(); 
 				break;
 			case 4:
 				new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 삭제를 요청함.");
-				Controllers.getCartController().requestCartDeleteOne();
+				Controllers.getCartNonUserController().requestCartNonUserDeleteOne();
 				break;
 			default:
 				new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
@@ -75,26 +74,7 @@ private Scanner keyboard;
 		} catch (InputMismatchException e) {
 			System.out.println("올바른 입력을 입력해주세요.");
 			Controllers.getCartNonUserController().requestloadCartNonUserList();
-=======
-		switch (selectedMenu) {
-		case 1:
-			Controllers.getMainController().requestNonUserMainView();
-			break;
-		case 2:
-			new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
-			Controllers.getOrderNonUserController().requestOrderRegister();
-			break;
-		case 3:
-			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 수정을 요청함.");
-			Controllers.getCartNonUserController().requestNonUserUpdateOrderAmount(); 
-			break;
-		case 4:
-			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 삭제를 요청함.");
-			Controllers.getCartNonUserController().requestCartNonUserDeleteOne();
-			break;
-		default:
-			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
->>>>>>> refs/remotes/origin/master
+
 		}
 		
 	}

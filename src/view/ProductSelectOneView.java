@@ -97,9 +97,8 @@ public class ProductSelectOneView {
 
 	}
 	
-	public void nonUserProductSelectOneMenu(int searchProduct) {
+	public void nonUserProductSelectOneMenu(int searchProduct) { //비회원 상품 장바구니
 
-<<<<<<< HEAD
 		try {
 			System.out.println();
 			System.out.println("1. 장바구니에 담기");
@@ -107,27 +106,15 @@ public class ProductSelectOneView {
 
 			int prdocutSelectOneMainViewNumber = keyboard.nextInt();
 			if (prdocutSelectOneMainViewNumber == 1) {
-//				Controllers.getCartController().requestNonUserCartRegister(searchProduct.getProductNumber());	// 장바구니에 담기 메서드 호출
+				Controllers.getCartNonUserController().requestCartNonUserRegister(searchProduct); // 장바구니에 담기 메서드 호출
 			} else if (prdocutSelectOneMainViewNumber == 2) {
 				Controllers.getMainController().requestNonUserMainView();
 			} else {
-				Controllers.getProductController().requestSelectOneMenu(searchProduct);
+				Controllers.getProductController().requestNonUserSelectOneMenu(searchProduct);
 			}
 		} catch (InputMismatchException e) {
 			System.out.println("올바른 입력을 입력해주세요.");
-=======
-		System.out.println();
-		System.out.println("1. 장바구니에 담기");
-		System.out.println("2. 뒤로가기");
 
-		int prdocutSelectOneMainViewNumber = keyboard.nextInt();
-		
-		if (prdocutSelectOneMainViewNumber == 1) {
-			Controllers.getCartNonUserController().requestCartNonUserRegister(searchProduct); // 장바구니에 담기 메서드 호출
-		} else if (prdocutSelectOneMainViewNumber == 2) {
-			Controllers.getMainController().requestNonUserMainView();
-		} else {
->>>>>>> refs/remotes/origin/master
 			Controllers.getProductController().requestNonUserSelectOneMenu(searchProduct);
 		}
 		
