@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import controller.Controllers;
 import domain.Login;
+import domain.NonUser;
 import domain.NonUserPayment;
 import domain.UserPayment;
 
@@ -30,7 +31,7 @@ public class PaymentLisetView {
 			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
 			break;
 		case 2:
-			
+			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
 			break;
 		default:
 			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
@@ -54,6 +55,23 @@ public class PaymentLisetView {
 		Controllers.getPaymentController().requestUserLoginProcessing(newLogin);
 
 	}
+	
+	public void nonUserLogin() { //결제확인을 위한 비회원 로그인
+
+		String nonUserName = null;
+		String nonUserTel = null;
+		
+		System.out.println("[*] 비  회 원    [*] ");
+		System.out.print("이   름 :");
+		nonUserName = keyboard.next();
+		System.out.print("전 화 번 호  :");
+		nonUserTel = keyboard.next();
+		
+		NonUser newNonUser = new NonUser(nonUserName, nonUserTel);
+
+		Controllers.getPaymentController().requestNonUserLoginProcessing(newNonUser);
+	}
+
 
 	public void userPaymentList(ArrayList<UserPayment> userPayments) { //회원결제목록 보기
 

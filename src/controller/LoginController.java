@@ -38,18 +38,6 @@ public class LoginController {
 		}
 
 	}
-	
-//	public void requestCheckLogin() { //로그인 체킹인데 이거는 원하는곳에서 dao만 호출하면되서 필요없을수도 있다.
-//
-//		boolean success = loginDao.checkLogin();
-//		if(success) {
-//			new AlertView().alert("로그인 되어있음");
-//			Controllers.getMainController().requestUserMainView();
-//		}else {
-//			new AlertView().alert("로그인 안되어있음");
-//			Controllers.getMainController().requestMainView();
-//		}
-//	}
 
 	public void requestLogout(){ //로그아웃
 
@@ -57,6 +45,7 @@ public class LoginController {
 		boolean success = loginDao.logOut();
 		if(success == true) {
 			new AlertView().alert("장바구니 초기화 성공");
+			Controllers.getCartController().requestCartClear();
 			Controllers.getMainController().requestMainView();
 		}else {
 			new AlertView().alert("장바구니 초기화 실패");

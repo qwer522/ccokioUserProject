@@ -82,7 +82,7 @@ public class MainView {
 
 		int nonUserMainViewNumber = keyboard.nextInt();
 		if(nonUserMainViewNumber == 1){
-			// 비회원용으로 만들어야 함
+			Controllers.getProductController().requestNonUserProductSelectOne();
 		}else if(nonUserMainViewNumber == 2){
 
 		}else if(nonUserMainViewNumber == 3){

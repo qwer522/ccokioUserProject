@@ -25,7 +25,6 @@ public class NonUserController {
 
 	public void requestReturnNonUserRegister(NonUser newNonUser) {
 
-		// 이름과 전화번호를 비회원 repository에 넣는 dao
 		boolean success = nonUserDao.nonUserRegister(newNonUser);
 
 		if (success) {

@@ -33,7 +33,7 @@ public class NonUserDao {
 			
 			// 메모리(repository)에 비회원 데이터 삽입 
 			pstmt.executeUpdate();
-			NonUserRepository.getNonUsers().add(newNonUser);
+			NonUserRepository.setNonUsers(newNonUser);
 			success = true;
 
 		} catch (SQLException e) {

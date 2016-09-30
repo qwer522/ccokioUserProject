@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import controller.Controllers;
 import domain.Login;
 import repository.LoginRepository;
+import repository.NonUserRepository;
 
 public class LoginDao {
 
@@ -65,6 +66,7 @@ public class LoginDao {
 		boolean success = false;
 		
 		LoginRepository.setLogin(null);
+		NonUserRepository.setNonUsers(null);
 		success = true;
 	
 		return success;

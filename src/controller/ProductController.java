@@ -75,7 +75,7 @@ public class ProductController {
 	public void requestNonUserProductSelectOne() {
 
 		ProductSelectOneView productSelectOneView = new ProductSelectOneView();
-		productSelectOneView.getSearchProductNumber();
+		productSelectOneView.getNonUserSearchProductNumber();
 
 	}
 

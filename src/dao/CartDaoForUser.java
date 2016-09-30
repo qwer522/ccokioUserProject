@@ -154,6 +154,7 @@ public class CartDaoForUser {
 
 	// 4. 장바구니 비우기
 	public boolean cartClear() {
+		
 		boolean success = false;
 
 		new CartRepository();
@@ -161,6 +162,7 @@ public class CartDaoForUser {
 		success = true;
 
 		return success;
+		
 	}
 
 	//5. 장바구니 삭제

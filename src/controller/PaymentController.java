@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import dao.PaymentDao;
 import domain.Cart;
 import domain.Login;
+import domain.NonUser;
 import domain.NonUserPayment;
 import domain.UserPayment;
 import view.AlertView;
@@ -114,22 +115,37 @@ public class PaymentController {
 			// 로그인 정보 담아와서 Login 획득
 			PaymentLisetView userLogin = new PaymentLisetView();
 			userLogin.userLogin();
-
 		}else {
-
+			PaymentLisetView nonUserLogin = new PaymentLisetView();
+			nonUserLogin.nonUserLogin();
 		}
 
 	}
+	
+	public void requestNonUserLoginProcessing(NonUser newNonUser) { //비회원 로그인 확인후 결제 확인 리스트 요청
 
-	public void requestUserLoginProcessing(Login newLogin) { //로그인 확인
+		// 비회원 확인
+		boolean success = paymentDao.nonUserLogIn(newNonUser);
+
+		if (success) {
+			new AlertView().alert("비회원 확인 성공 ");
+			requestNonUserPaymentList();
+		} else {
+			new AlertView().alert("비회원 확인 실패");
+			Controllers.getMainController().requestMainView();
+		}
+		
+	}
+
+	public void requestUserLoginProcessing(Login newLogin) { //회원 로그인 확인후 결제 확인 리스트 요청
 
 		boolean success = paymentDao.userLogIn(newLogin);
 
 		if (success) {
-			new AlertView().alert("로그인 성공 하였습니다.");
+			new AlertView().alert("회원 확인 성공");
 			requestUserPaymentList();
 		} else {
-			new AlertView().alert("아이디 또는 비밀번호가 틀립니다.");
+			new AlertView().alert("회원 확인 실패");
 			Controllers.getMainController().requestMainView();
 		}
 
@@ -146,7 +162,7 @@ public class PaymentController {
 			paymentListView.userPaymentList(userPayments);
 		}else {
 			new AlertView().alert("결제 내역이 없습니다.");
-			Controllers.getMainController().requestMainView();
+			Controllers.getLoginController().requestLogout();
 		}
 
 	}
@@ -156,13 +172,13 @@ public class PaymentController {
 		//dao호출
 		ArrayList<NonUserPayment> nonUserPayments = paymentDao.nonUserPayment();
 
-		if(nonUserPayments != null) {
+		if(nonUserPayments.size() != 0) {
 			//view호출
 			PaymentLisetView paymentListView = new PaymentLisetView();
 			paymentListView.nonUserPaymentList(nonUserPayments);
 		}else {
-			new AlertView().alert("결제 내역이 없습니다.");
-			Controllers.getMainController().requestMainView();
+			new AlertView().alert("\t결제 내역이 없습니다.\t");
+			Controllers.getLoginController().requestLogout();
 		}
 
 	}

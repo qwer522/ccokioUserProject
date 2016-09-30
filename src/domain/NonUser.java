@@ -15,6 +15,11 @@ public class NonUser {
 		this.nonUserTel = nonUserTel;
 		this.nonUserAddress = nonUserAddress;
 	}
+	
+	public NonUser(String nonUserName, String nonUserTel) {
+		this.nonUserName = nonUserName;
+		this.nonUserTel = nonUserTel;
+	}
 
 	public String getNonUserName() {
 		return nonUserName;

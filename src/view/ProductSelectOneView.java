@@ -15,7 +15,7 @@ public class ProductSelectOneView {
 
 	}
 
-	public void getSearchProductNumber() {
+	public void getSearchProductNumber() { //회원이 조회
 
 		int searchProductNumber = 0;
 
@@ -24,6 +24,18 @@ public class ProductSelectOneView {
 		searchProductNumber = keyboard.nextInt();
 
 		Controllers.getProductController().requestReturnSelectOne(searchProductNumber);
+
+	}
+	
+	public void getNonUserSearchProductNumber() { //비회원이 조회
+
+		int searchProductNumber = 0;
+
+		System.out.println("\n[제품 조회 모드]");
+		System.out.print("조회 할 제품번호 : ");
+		searchProductNumber = keyboard.nextInt();
+
+		Controllers.getProductController().requestNonUserReturnSelectOne(searchProductNumber);
 
 	}
 
