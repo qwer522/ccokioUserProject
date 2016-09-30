@@ -94,11 +94,13 @@ public class PaymentController {
 
 		if(success) {
 			new AlertView().alert("결제처리가 완료되었습니다.");
-			// Controllers.getCartController().requestCartClear(); 장바구니 초기화 컨트롤 호출
+			Controllers.getCartNonUserController().requestcartClear();
+			Controllers.getMainController().requestMainView();
 		}else {//오류
 			new AlertView().alert("결제 오류");
+			Controllers.getMainController().requestNonUserMainView();
 		}
-		Controllers.getMainController().requestNonUserMainView();
+		
 
 	}
 

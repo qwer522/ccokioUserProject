@@ -18,10 +18,16 @@ public class CartNonUserController {
 		cartDaoForNonUser = new CartDaoForNonUser();
 	}
 
+<<<<<<< HEAD
 	//0. db 불러오기
 	public void requestloadCartNonUserList() { //DB 불러오기
 
 		cartDaoForNonUser.cartNonUserClear();
+=======
+	public void requestloadCartNonUserList() { //DB 불러오기
+
+		requestcartClear();
+>>>>>>> refs/remotes/origin/master
 		boolean success = cartDaoForNonUser.loadCartNonUserList();
 
 		if(success) {
@@ -33,6 +39,7 @@ public class CartNonUserController {
 
 	}
 
+<<<<<<< HEAD
 
 	//1. 장바구니 등록
 	public void requestCartNonUserRegister(int productNumber) {
@@ -120,4 +127,17 @@ public class CartNonUserController {
 
 			
 		}
+=======
+	public void requestcartClear() { //비회원 장바구니 클리어
+
+		boolean success = cartDaoForNonUser.cartClear();
+
+		if(success) {
+			new AlertView().alert("비회원 장바구니 클리어 성공");
+		} else {
+			new AlertView().alert("비회원 장바구니 클리어 실패");
+		}
+	}
+
+>>>>>>> refs/remotes/origin/master
 }
