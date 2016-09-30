@@ -48,7 +48,7 @@ public class OrderView {
 			Controllers.getPaymentController().requestNonUserRegister();
 			break;
 		case 2:
-			
+			Controllers.getCartNonUserController().requestCartNonUserList();
 			break;
 		default:
 			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
