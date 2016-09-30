@@ -45,10 +45,10 @@ public class CartListView {
 		
 		//장바구니 목록에 출력되는 메뉴
 		
-		System.out.println("[1] 제     품      목   록   ");
-		System.out.println("[2] 상     품      주   문   ");
-		System.out.println("[3] 상     품      수   정   ");
-		System.out.println("[4] 상     품      취   소   ");
+		System.out.println("[1] 목록 으로   ");
+		System.out.println("[2] 주       문   ");
+		System.out.println("[3] 수량 수정   ");
+		System.out.println("[4] 장바구니 상품 삭제  ");
 		
 		
 		
@@ -56,12 +56,10 @@ public class CartListView {
 
 		switch (selectedMenu) {
 		case 1:
-			new AlertView().alert("제품 컨트롤러에 제품 목록 보기를 요청함.");
-//			Controllers.getProductController().requestSelectList();
+			Controllers.getMainController().requestUserMainView();
 			break;
 		case 2:
 			new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
-//			
 
 			break;
 		case 3:
@@ -71,11 +69,6 @@ public class CartListView {
 		case 4:
 			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 삭제를 요청함.");
 			Controllers.getCartController().requestCartDeleteOne();
-			break;
-		
-		case 0:
-			new AlertView().alert("프로그램 컨트롤러에 프로그램 종료를 요청함.");
-			Controllers.getProgramController().requestExitProgram();
 			break;
 		default:
 			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");

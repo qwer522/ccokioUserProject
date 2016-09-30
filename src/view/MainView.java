@@ -15,7 +15,8 @@ public class MainView {
 	public void mainView() { //초기 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
-
+		Controllers.getProductController().requestProductSelectList();
+		System.out.println();
 		System.out.println("[1]  메  뉴  조  회  ");
 		System.out.println("[2]  로     그    인  ");
 		System.out.println("[3]  비회원  주 문  ");
@@ -25,8 +26,9 @@ public class MainView {
 		System.out.println("[0]   종       료     ");
 
 		int mainViewNumber = keyboard.nextInt();
-		if(mainViewNumber == 1){       //메뉴조회
 
+		if(mainViewNumber == 1){       //메뉴조회
+			Controllers.getProductController().requestProductSelectOne(); // 상품 조회 메서드 호출
 		}else if(mainViewNumber == 2){ //로그인
 			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){ //비회원주문
@@ -48,7 +50,8 @@ public class MainView {
 	public void userMainView() { //회원 메인 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
-
+		Controllers.getProductController().requestProductSelectList(); 
+		System.out.println();
 		System.out.println("[1] 메  뉴  조  회  ");
 		System.out.println("[2] 장  바  구  니  ");
 		System.out.println("[3] 내     정    보  ");
@@ -56,8 +59,7 @@ public class MainView {
 
 		int userMainViewNumber = keyboard.nextInt();
 		if(userMainViewNumber == 1){
-			//시험삼아 결제 추가
-			Controllers.getPaymentController().requestUserRegister();
+			Controllers.getProductController().requestProductSelectOne();
 		}else if(userMainViewNumber == 2){
 			Controllers.getCartController().requestCartList();
 		}else if(userMainViewNumber == 3){
@@ -72,14 +74,15 @@ public class MainView {
 	public void nonUserMainView() { //비회원 메인 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
-
+		Controllers.getProductController().requestProductSelectList();
+		System.out.println();
 		System.out.println("[1] 메  뉴  조  회  ");
 		System.out.println("[2] 장  바  구  니  ");
 		System.out.println("[3] 메  인  화  면  ");
 
 		int nonUserMainViewNumber = keyboard.nextInt();
 		if(nonUserMainViewNumber == 1){
-
+			// 비회원용으로 만들어야 함
 		}else if(nonUserMainViewNumber == 2){
 
 		}else if(nonUserMainViewNumber == 3){

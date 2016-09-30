@@ -37,8 +37,8 @@ public class PaymentCouponView {
 			
 		}
 		
-		System.out.println("[*]  할인 된    금    액      [*]: " + totalPrice);
-		System.out.println("[*]  잔 여   쿠  폰   수 [*]: "+ couponHonorablyAmount/10 +"\n");
+		System.out.println("할인된  금   액  : " + totalPrice);
+		System.out.println("잔여  쿠 폰 수  : "+ couponHonorablyAmount/10 +"\n");
 		
 		while(true) {
 			System.out.println("[1] 쿠   폰     사   용");
