@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Controllers;
@@ -20,23 +21,29 @@ public class PaymentLisetView {
 
 	public void checkingUserOrNonUser() { //결제확인을 위한 회원인지 비회원인지 선택
 
-		System.out.println("1. 회원");
-		System.out.println("2. 비회원");
+		try {
+			System.out.println("1. 회원");
+			System.out.println("2. 비회원");
 
-		int checkingNumber = keyboard.nextInt();
+			int checkingNumber = keyboard.nextInt();
 
-		switch (checkingNumber) {
+			switch (checkingNumber) {
 
-		case 1:
-			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
-			break;
-		case 2:
-			Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
-			break;
-		default:
-			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
+			case 1:
+				Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
+				break;
+			case 2:
+				Controllers.getPaymentController().requestPaymentListLogin(checkingNumber);
+				break;
+			default:
+				new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
 
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("올바른 입력을 입력해주세요.");
+			Controllers.getPaymentController().requestPaymentList();
 		}
+		
 
 	}
 

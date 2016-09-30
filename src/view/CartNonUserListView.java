@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Controllers;
@@ -43,32 +44,39 @@ private Scanner keyboard;
 
 	public void nonUserCartView() {
 		
-		System.out.println("[1] 목록 으로   ");
-		System.out.println("[2] 주       문   ");
-		System.out.println("[3] 수량 수정   ");
-		System.out.println("[4] 장바구니 상품 삭제  ");
-		
-		int selectedMenu = keyboard.nextInt();
+		try {
+			System.out.println("[1] 목록 으로   ");
+			System.out.println("[2] 주       문   ");
+			System.out.println("[3] 수량 수정   ");
+			System.out.println("[4] 장바구니 상품 삭제  ");
+			
+			int selectedMenu = keyboard.nextInt();
 
-		switch (selectedMenu) {
-		case 1:
-			Controllers.getMainController().requestNonUserMainView();
-			break;
-		case 2:
-			new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
-			Controllers.getOrderNonUserController().requestOrderRegister();
-			break;
-		case 3:
-			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 수정을 요청함.");
-			Controllers.getCartNonUserController().requestNonUserUpdateOrderAmount(); 
-			break;
-		case 4:
-			new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 삭제를 요청함.");
-			Controllers.getCartNonUserController().requestCartNonUserDeleteOne();
-			break;
-		default:
-			new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
+			switch (selectedMenu) {
+			case 1:
+				Controllers.getMainController().requestNonUserMainView();
+				break;
+			case 2:
+				new AlertView().alert("주문 컨트롤러에 주문를 요청함.");
+				Controllers.getOrderNonUserController().requestOrderRegister();
+				break;
+			case 3:
+				new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 수정을 요청함.");
+				Controllers.getCartNonUserController().requestNonUserUpdateOrderAmount(); 
+				break;
+			case 4:
+				new AlertView().alert("장바구니 컨트롤러에 장바구니 상품 삭제를 요청함.");
+				Controllers.getCartNonUserController().requestCartNonUserDeleteOne();
+				break;
+			default:
+				new AlertView().alert("[*] 메 뉴 를 다 시 선 택 해 주 세 요  [*]");
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("올바른 입력을 입력해주세요.");
+			Controllers.getCartNonUserController().requestloadCartNonUserList();
+
 		}
+		
 	}
 	
 }

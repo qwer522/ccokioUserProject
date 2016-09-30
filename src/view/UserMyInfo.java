@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Controllers;
@@ -15,8 +16,8 @@ public class UserMyInfo {
 	}
 
 	public void UserInfoMenu(){
-
 		
+		try {
 			//치킨 메뉴 호출해주기 설명없는 거로
 			Controllers.getUserController().requestUserinfoShowView();
 
@@ -38,6 +39,11 @@ public class UserMyInfo {
 				}
 				
 			}
+		} catch (InputMismatchException e) {
+			System.out.println("올바른 입력을 입력해주세요.");
+			Controllers.getUserController().requestUserInfo();
+		}
+			
 
 	}
 
