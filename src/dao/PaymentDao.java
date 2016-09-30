@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import controller.Controllers;
 import domain.Cart;
+import domain.Login;
 import domain.NonUserPayment;
 import domain.UserPayment;
 import repository.CartRepository;
@@ -223,7 +224,7 @@ public class PaymentDao {
 
 			sql = "select * from payment4_view_paymentInfor where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, "qwer522");
+			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -240,7 +241,6 @@ public class PaymentDao {
 				userPayment.setOrderSum(rs.getInt(9));
 				userPayment.setPaymentDate(rs.getString(10));
 				userPayments.add(userPayment);
-
 			}
 
 		} catch (SQLException e) {
@@ -280,8 +280,9 @@ public class PaymentDao {
 				nonUserPayment.setOrderNumber(rs.getInt(3));
 				nonUserPayment.setProductName(rs.getString(4));
 				nonUserPayment.setOrderCount(rs.getInt(5));
-				nonUserPayment.setOrderSum(rs.getInt(5) * rs.getInt(6));
-				nonUserPayment.setPaymentDate(rs.getString(7));
+				nonUserPayment.setProudctPrice(rs.getInt(6));
+				nonUserPayment.setOrderSum(rs.getInt(7));
+				nonUserPayment.setPaymentDate(rs.getString(8));
 				nonUserPayments.add(nonUserPayment);
 
 			}
@@ -337,7 +338,7 @@ public class PaymentDao {
 		return CartRepository.getCart();
 
 	}
-	
+
 	public int couponHonorablyAmount() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		int couponHonorablyAmount = 0;
@@ -345,7 +346,7 @@ public class PaymentDao {
 		return couponHonorablyAmount;
 
 	}
-	
+
 	public String userClass() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		String userClass = null;
@@ -353,7 +354,7 @@ public class PaymentDao {
 		return userClass;
 
 	}
-	
+
 	public double totalPrice() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		double totalPrice = 0;
@@ -361,7 +362,7 @@ public class PaymentDao {
 		return totalPrice;
 
 	}
-	
+
 	public boolean couponUseNumber(int number) { //번호있는지 확인
 
 		boolean success =false;
@@ -394,9 +395,9 @@ public class PaymentDao {
 							pstmt.setInt(1, CartRepository.getCoupon());
 							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
 							pstmt.executeUpdate();
-							
+
 							pstmt.close();
-							
+
 							sql = "update UserOrder set couponuseAmount = ? where userId = ? and paymentflag = 'n' ";
 							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 							pstmt.setInt(1, CartRepository.getCart().get(i).getCouponuseAmount() + couponuseAmount);
@@ -417,6 +418,40 @@ public class PaymentDao {
 
 		}
 		return success;
+	}
+
+	public boolean userLogIn(Login newLogin) { //회원 로그인확인
+
+		boolean success = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			//로그인 아이디 비밀번호 확인
+			String sql = "select userId, userPassword from user1 where userId = ? and userPassword = ?";
+			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
+			pstmt.setString(1, newLogin.getLoginId());
+			pstmt.setString(2, newLogin.getLoginPassword());
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				LoginRepository.setLogin(newLogin);
+				success = true;
+			}else {
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {try {rs.close();} catch (SQLException e) {	e.printStackTrace();}
+			}
+			if (pstmt != null) {try {pstmt.close();} catch (SQLException e) {e.printStackTrace();}
+			}
+		}
+
+		return success;
+
 	}
 
 }

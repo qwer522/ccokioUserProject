@@ -12,7 +12,7 @@ public class MainView {
 		keyboard = new Scanner(System.in);
 	}
 
-	public void mainView() {
+	public void mainView() { //초기 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 		Controllers.getProductController().requestProductSelectList(); System.out.println();
@@ -21,20 +21,29 @@ public class MainView {
 		System.out.println("[3]  비회원  주 문  ");
 		System.out.println("[4]  주  문  내  역  ");
 		System.out.println("[5]  회  원  가  입  ");
+		System.out.println("[6]  결  제  확  인  ");
 		System.out.println("[0]   종       료     ");
 
 		int mainViewNumber = keyboard.nextInt();
+<<<<<<< HEAD
 		if(mainViewNumber == 1){
 			Controllers.getProductController().requestProductSelectOne(); // 상품 조회 메서드 호출
 		}else if(mainViewNumber == 2){
-			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
-		}else if(mainViewNumber == 3){
-			Controllers.getNonUserController().requestNonUserRegister(); // 비회원 주문 메서드 호출
-		}else if(mainViewNumber == 4){
+=======
+		if(mainViewNumber == 1){       //메뉴조회
 
-		}else if(mainViewNumber == 5){
-			Controllers.getUserController().requestRegister(); //회원가입
-		}else if(mainViewNumber == 0){
+		}else if(mainViewNumber == 2){ //로그인
+>>>>>>> refs/remotes/origin/master
+			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
+		}else if(mainViewNumber == 3){ //비회원주문
+			Controllers.getNonUserController().requestNonUserRegister(); // 비회원 주문 메서드 호출
+		}else if(mainViewNumber == 4){ //주문내역
+
+		}else if(mainViewNumber == 5){ //회원가입
+			Controllers.getUserController().requestRegister();
+		}else if(mainViewNumber == 6){ //결제확인
+			Controllers.getPaymentController().requestUserPaymentList();
+		}else if(mainViewNumber == 0){ //종료
 			System.out.println("[  꼬끼오 치킨 쇼핑을 종료합니다. ] ");
 			System.exit(0);
 		}else {
@@ -42,7 +51,7 @@ public class MainView {
 		}
 	}
 
-	public void userMainView() {
+	public void userMainView() { //회원 메인 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 		Controllers.getProductController().requestProductSelectList(); System.out.println();
@@ -66,7 +75,7 @@ public class MainView {
 		}
 	}
 
-	public void nonUserMainView() {
+	public void nonUserMainView() { //비회원 메인 화면
 
 		//치킨 메뉴 호출해주기 설명없는 거로
 		Controllers.getProductController().requestProductSelectList(); System.out.println();
