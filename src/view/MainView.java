@@ -81,7 +81,7 @@ public class MainView {
 		if(nonUserMainViewNumber == 1){
 			Controllers.getProductController().requestNonUserProductSelectOne();
 		}else if(nonUserMainViewNumber == 2){
-
+			Controllers.getCartNonUserController().requestCartNonUserList();
 		}else if(nonUserMainViewNumber == 3){
 			Controllers.getMainController().requestMainView();
 		}else {

@@ -8,11 +8,11 @@ public class CartNonUserRepository {
 
 	private static ArrayList<CartNonUser> CartNonUsers;
 	private static int cartLastNumber;    //장바구니 번호 
-	private static int totalPrice;        //총 가격
+	private static int productPriceSum;        //총 가격
 	
 	public CartNonUserRepository() {
 		CartNonUsers = new ArrayList<CartNonUser>();
-		totalPrice = 0;
+		productPriceSum = 0;
 	}
 
 	public static ArrayList<CartNonUser> getCartNonUsers() {
@@ -31,12 +31,12 @@ public class CartNonUserRepository {
 		CartNonUserRepository.cartLastNumber = cartLastNumber;
 	}
 
-	public static int getTotalPrice() {
-		return totalPrice;
+	public static int getProductPriceSum() {
+		return productPriceSum;
 	}
 
-	public static void setTotalPrice(int totalPrice) {
-		CartNonUserRepository.totalPrice = totalPrice;
+	public static void setProductPriceSum(int productPriceSum) {
+		CartNonUserRepository.productPriceSum = productPriceSum;
 	}
 	
 }
