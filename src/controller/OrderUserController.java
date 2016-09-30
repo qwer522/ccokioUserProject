@@ -2,7 +2,7 @@ package controller;
 
 import dao.OrderUserDao;
 import view.AlertView;
-import view.OrderUserView;
+import view.OrderView;
 
 public class OrderUserController {
 
@@ -18,7 +18,7 @@ public class OrderUserController {
 		
 		if(success) {
 			new AlertView().alert("주문 DB에 저장 성공 ");
-			OrderUserView orderUserView = new OrderUserView();
+			OrderView orderUserView = new OrderView();
 			orderUserView.orderUser();
 		}else {
 			new AlertView().alert("주문 DB에 저장 실패 ");

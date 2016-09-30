@@ -88,7 +88,7 @@ public class CartController {
 	}
 
 
-	//4. 장바구니 비우기
+	//4. 회원 장바구니 비우기
 	public void requestCartClear() {
 
 		boolean success = CartDaoForUser.cartClear();
