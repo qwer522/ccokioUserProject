@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.PaymentDao;
 import domain.Cart;
+import domain.Login;
 import domain.NonUserPayment;
 import domain.UserPayment;
 import view.AlertView;
@@ -97,6 +98,39 @@ public class PaymentController {
 			new AlertView().alert("결제 오류");
 		}
 		Controllers.getMainController().requestNonUserMainView();
+
+	}
+	
+	public void  requestPaymentList() { //결제확인시 회원인지 비회원인지 결정하는 컨트롤
+		
+		PaymentLisetView checking = new PaymentLisetView();
+		checking.checkingUserOrNonUser();
+		
+	}
+	
+	public void requestPaymentListLogin(int checkingNumber) { //선택한 사항을 보안을 위해 로그인을 시킨다.
+		
+		if(checkingNumber == 1 ) {
+			// 로그인 정보 담아와서 Login 획득
+			PaymentLisetView userLogin = new PaymentLisetView();
+			userLogin.userLogin();
+		}else {
+			
+		}
+		
+	}
+	
+	public void requestUserLoginProcessing(Login newLogin) {
+		
+		boolean success = paymentDao.userLogIn(newLogin);
+
+		if (success) {
+			new AlertView().alert("로그인 성공 하였습니다.");
+			requestUserPaymentList();
+		} else {
+			new AlertView().alert("아이디 또는 비밀번호가 틀립니다.");
+			Controllers.getMainController().requestMainView();
+		}
 
 	}
 

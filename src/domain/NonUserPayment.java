@@ -2,13 +2,14 @@ package domain;
 
 public class NonUserPayment {
 
-	private int paymentNumber;
-	private String nonUserTel;
-	private int orderNumber;
-	private String productName;
-	private int orderAmount;
-	private int orderSum;
-	private String paymentDate;
+	private int paymentNumber;   //결제번호
+	private String nonUserTel;   //전화번호
+	private int orderNumber;     //주문번호
+	private String productName;  //상품이름
+	private int orderAmount;     //주문 수량
+	private int proudctPrice;    //상품 가격
+	private int orderSum;        //주문번호의 수량 * 가격   합계
+	private String paymentDate;  //날짜
 	
 	public NonUserPayment() {
 		
@@ -20,16 +21,40 @@ public class NonUserPayment {
 		
 	}
 
-	public NonUserPayment(int paymentNumber, String nonUserTel, int orderNumber,  String productName, int orderAmount, int orderSum, String paymentDate) {
-		
+	public NonUserPayment(int paymentNumber, String nonUserTel, int orderNumber, String productName, int orderAmount,
+			int proudctPrice, int orderSum, String paymentDate) {
 		this.paymentNumber = paymentNumber;
 		this.nonUserTel = nonUserTel;
 		this.orderNumber = orderNumber;
 		this.productName = productName;
 		this.orderAmount = orderAmount;
+		this.proudctPrice = proudctPrice;
 		this.orderSum = orderSum;
 		this.paymentDate = paymentDate;
-		
+	}
+
+	public String getNonUserTel() {
+		return nonUserTel;
+	}
+
+	public void setNonUserTel(String nonUserTel) {
+		this.nonUserTel = nonUserTel;
+	}
+
+	public int getOrderAmount() {
+		return orderAmount;
+	}
+
+	public void setOrderAmount(int orderAmount) {
+		this.orderAmount = orderAmount;
+	}
+
+	public int getProudctPrice() {
+		return proudctPrice;
+	}
+
+	public void setProudctPrice(int proudctPrice) {
+		this.proudctPrice = proudctPrice;
 	}
 
 	public int getOrderSum() {
