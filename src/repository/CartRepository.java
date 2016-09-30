@@ -7,10 +7,10 @@ import domain.Cart;
 public class CartRepository {
 
 	private static ArrayList<Cart> cart;
-	private static int cartNumber;
-	private static int coupon;
-	private static String userClass;
-	private static double totalPrice;
+	private static int cartNumber;   //장바구니 번호 
+	private static int coupon;       //쿠폰
+	private static String userClass; //회원 등급
+	private static double totalPrice;//총 가격
 
 	public CartRepository() {
 

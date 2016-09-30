@@ -1,42 +1,23 @@
 package domain;
 
-public class Cart {
+public class CartNonUser {
 
 	private int cartNumber;      //장바구니 번호
 	private String productName;  //상품 이름 
 	private int orderAmount;     //상품 수량
 	private int productPrice;    //상품가격
-	private int couponuseAmount; //쿠폰 사용 개수
 	private int productPriceSum; //상품 합계
 	
-	public Cart() {
+	public CartNonUser() {
 		
 	}
-	
-	public Cart(int cartNumber, String productName, int orderAmount, int productPrice, int couponuseAmount, int productPriceSum) {
-		
+
+	public CartNonUser(int cartNumber, String productName, int orderAmount, int productPrice, int productPriceSum) {
 		this.cartNumber = cartNumber;
 		this.productName = productName;
 		this.orderAmount = orderAmount;
 		this.productPrice = productPrice;
-		this.couponuseAmount = couponuseAmount;
 		this.productPriceSum = productPriceSum;
-	}
-	
-	public int getProductPriceSum() {
-		return productPriceSum;
-	}
-
-	public void setProductPriceSum(int productPriceSUm) {
-		this.productPriceSum = productPriceSUm;
-	}
-
-	public int getCouponuseAmount() {
-		return couponuseAmount;
-	}
-
-	public void setCouponuseAmount(int couponuseAmount) {
-		this.couponuseAmount = couponuseAmount;
 	}
 
 	public int getCartNumber() {
@@ -55,7 +36,14 @@ public class Cart {
 		this.productName = productName;
 	}
 
-	
+	public int getOrderAmount() {
+		return orderAmount;
+	}
+
+	public void setOrderAmount(int orderAmount) {
+		this.orderAmount = orderAmount;
+	}
+
 	public int getProductPrice() {
 		return productPrice;
 	}
@@ -64,13 +52,12 @@ public class Cart {
 		this.productPrice = productPrice;
 	}
 
-	public int getOrderAmount() {
-		return orderAmount;
+	public int getProductPriceSum() {
+		return productPriceSum;
 	}
 
-	public void setOrderAmount(int orderAmount) {
-		this.orderAmount = orderAmount;
+	public void setProductPriceSum(int productPriceSum) {
+		this.productPriceSum = productPriceSum;
 	}
-	
-	
+
 }

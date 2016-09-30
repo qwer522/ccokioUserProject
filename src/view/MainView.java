@@ -20,9 +20,8 @@ public class MainView {
 		System.out.println("[1]  메  뉴  조  회  ");
 		System.out.println("[2]  로     그    인  ");
 		System.out.println("[3]  비회원  주 문  ");
-		System.out.println("[4]  주  문  내  역  ");
-		System.out.println("[5]  회  원  가  입  ");
-		System.out.println("[6]  결  제  확  인  ");
+		System.out.println("[4]  회  원  가  입  ");
+		System.out.println("[5]  결  제  확  인  ");
 		System.out.println("[0]   종       료     ");
 
 		int mainViewNumber = keyboard.nextInt();
@@ -33,13 +32,11 @@ public class MainView {
 			Controllers.getLoginController().requestLogin(); //로그인 메서드 호출
 		}else if(mainViewNumber == 3){ //비회원주문
 			Controllers.getNonUserController().requestNonUserRegister(); // 비회원 주문 메서드 호출
-		}else if(mainViewNumber == 4){ //주문내역
-
-		}else if(mainViewNumber == 5){ //회원가입
+		}else if(mainViewNumber == 4){ //회원가입
 			Controllers.getUserController().requestRegister();
-		}else if(mainViewNumber == 6){ //결제확인
+		}else if(mainViewNumber == 5){ //결제확인
 			Controllers.getPaymentController().requestPaymentList();
-		}else if(mainViewNumber == 0){ //종료
+		}else if(mainViewNumber == 6){ //종료
 			System.out.println("[  꼬끼오 치킨 쇼핑을 종료합니다. ] ");
 			System.exit(0);
 		}else {
