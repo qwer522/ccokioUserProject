@@ -99,7 +99,7 @@ public class ProductController {
 	}
 
 	// 비회원 상품 조회 후 메뉴 요청
-	public void requestNonUserSelectOneMenu(Product searchProduct) {
+	public void requestNonUserSelectOneMenu(int searchProduct) {
 
 		ProductSelectOneView productSelectOneView = new ProductSelectOneView();
 		productSelectOneView.nonUserProductSelectOneMenu(searchProduct);

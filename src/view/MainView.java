@@ -83,6 +83,7 @@ public class MainView {
 
 	public void nonUserMainView() { //비회원 메인 화면
 
+<<<<<<< HEAD
 		try {
 			//치킨 메뉴 호출해주기 설명없는 거로
 			Controllers.getProductController().requestProductSelectList();
@@ -103,6 +104,23 @@ public class MainView {
 			}
 		} catch (InputMismatchException e) {
 			System.out.println("올바른 입력을 입력해주세요.");
+=======
+		//치킨 메뉴 호출해주기 설명없는 거로
+		Controllers.getProductController().requestProductSelectList();
+		System.out.println();
+		System.out.println("[1] 메  뉴  조  회  ");
+		System.out.println("[2] 장  바  구  니  ");
+		System.out.println("[3] 메  인  화  면  ");
+
+		int nonUserMainViewNumber = keyboard.nextInt();
+		if(nonUserMainViewNumber == 1){
+			Controllers.getProductController().requestNonUserProductSelectOne();
+		}else if(nonUserMainViewNumber == 2){
+			Controllers.getCartNonUserController().requestCartNonUserList();
+		}else if(nonUserMainViewNumber == 3){
+			Controllers.getMainController().requestMainView();
+		}else {
+>>>>>>> refs/remotes/origin/master
 			Controllers.getMainController().requestNonUserMainView();
 		}
 		

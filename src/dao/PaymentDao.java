@@ -161,8 +161,7 @@ public class PaymentDao {
 
 			//처음에만 뷰값증가시키기
 			if(rs.next()) {
-
-				sql = "insert into NonUserPayment(nonUserPaymentNumer, nonUserOrderNumber) values(NonUser_paymentNumber_seq.nextval, ?)";
+				sql = "insert into NonUserPayment(nonUserPaymentNumber, nonUserOrderNumber) values(NonUser_paymentNumber_seq.nextval, ?)";
 				pstmt1 = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, rs.getInt(1));
 				pstmt1.executeUpdate();
@@ -171,7 +170,7 @@ public class PaymentDao {
 			//두번째부터 뷰값 현재값으로
 			while(rs.next()) {
 
-				sql = "insert into NonUserPayment(nonUserPaymentNumer, nonUserOrderNumber) values(NonUser_paymentNumber_seq.currval, ?)";
+				sql = "insert into NonUserPayment(nonUserPaymentNumber, nonUserOrderNumber) values(NonUser_paymentNumber_seq.currval, ?)";
 				pstmt1 = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, rs.getInt(1));
 				pstmt1.executeUpdate();
@@ -273,7 +272,7 @@ public class PaymentDao {
 
 			sql = "select * from Nonuserpay_view_paymentInfor where nonUserTel = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, "qwer522");
+			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){

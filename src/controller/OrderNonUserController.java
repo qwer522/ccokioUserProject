@@ -18,11 +18,11 @@ public class OrderNonUserController {
 
 		if(success) {
 			new AlertView().alert("주문 DB에 저장 성공 ");
-			OrderView orderUserView = new OrderView();
-			orderUserView.orderUser();
+			OrderView orderNonUserView = new OrderView();
+			orderNonUserView.orderNonUser();
 		}else {
 			new AlertView().alert("주문 DB에 저장 실패 ");
-			Controllers.getCartController().requestUserCartView();
+			Controllers.getCartNonUserController().requestCartNonUserList();
 		}
 
 	}

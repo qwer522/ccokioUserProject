@@ -10,10 +10,6 @@ select * from NonUserOrder;
 select * from NonUser;
 select * from discount;
 
-select o.userOrderNumber, p.productName, o.orderAmount, p.productPrice, o.couponuseAmount
-from product p, userOrder o 
-where o.userId = 'qwer522' and o.productName = p.productName and o.paymentflag = 'n';
-
 --테이블삭제
 drop table Admin1;
 drop table Managers;
@@ -25,6 +21,7 @@ drop table NonUserPayment;
 drop table NonUserOrder;
 drop table NonUser;
 drop table discount;
+
 --시퀀스 삭제
 drop sequence Product_ProductNumber_seq;
 drop sequence Managers_managerNumber_seq;
@@ -65,6 +62,19 @@ create table Product
 insert into Product values(1, '표창', '닌자', 2000, '시골');
 commit;
 
+--할인율 테이블
+create table discount
+(
+  udiscountClassNumber int PRIMARY key,
+  className varchar2(20),
+  discount float
+);
+--할인율 기본 추가 자료
+insert into discount values(1,'실버', 0.9);
+insert into discount values(2,'골드', 0.85);
+insert into discount values(3,'플래티넘', 0.8);
+
+
 --회원 (1넣은이유는 user이란게 시스템에있어서)
 create table User1
 (
@@ -79,22 +89,6 @@ create table User1
   purchaseQuantity int default 0 not null
 );
 
---할인율 테이블
-create table discount
-(
-  udiscountClassNumber int PRIMARY key,
-  className varchar2(20),
-  discount float
-);
---할인율 기본 추가 자료
-insert into discount values(1,'실버', 0.9);
-insert into discount values(2,'골드', 0.85);
-insert into discount values(3,'플래티넘', 0.8);
-
-insert into user1(userNumber, userId, userPassword, userName, userTel, userAddress) values('1','1','1','1','1','1');
-update User1 set coupon = 32 where userId = 'qwer522';
-commit;
-
 --회원 주문
 create table UserOrder
 (
@@ -105,10 +99,6 @@ create table UserOrder
   paymentflag VARCHAR2(5) default 'n',
   couponuseAmount int default 0
 );
-
-
-insert into UserOrder values(1, 'qwer522', '표창', 20, 'n', 0);
-commit;
 
 --회원 결제
 create table UserPayment
@@ -191,7 +181,7 @@ drop view UserOrder_view_Infor;
 --비회원 결제목록 뷰
 create view Nonuserpay_view_paymentInfor
 as
-select pay.nonUserPaymentNumer , o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, o.orderAmount * p.productPrice as orderSum, pay.paymentDate 
+select pay.nonUserPaymentNumber , o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, o.orderAmount * p.productPrice as orderSum, pay.paymentDate 
 from NonUserOrder o, product p, NonUserPayment pay
 where p.productName = o.productName and o.paymentflag = 'y';
 
