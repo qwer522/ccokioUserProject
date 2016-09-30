@@ -31,7 +31,7 @@ public class LoginController {
 		if (success) {
 			new AlertView().alert("로그인 성공 하였습니다.");
 			Controllers.getCartController().requestLoadCartList();
-//			Controllers.getMainController().requestUserMainView();
+			Controllers.getMainController().requestUserMainView();
 		} else {
 			new AlertView().alert("아이디 또는 비밀번호가 틀립니다.");
 			Controllers.getMainController().requestMainView();

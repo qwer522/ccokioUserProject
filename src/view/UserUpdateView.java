@@ -19,15 +19,15 @@ public class UserUpdateView {
 		
 		System.out.println("[*]   회   원     수    정      [*]");
 		
-		System.out.print(  "[*]   비      밀   번    호     [*] : ");
+		System.out.print(  "변경될 비밀번호 : ");
 		String userPassword = keyboard.next();
 		
 		
-		System.out.print(  "[*]   전      화   번    호     [*] : ");
+		System.out.print(  "변경될 전화번호 : ");
 		String userTel = keyboard.next();
 	
 		
-		System.out.print(  "[*]   주                  소      [*] : ");
+		System.out.print(  "변경될 주  소 : ");
 		String userAddress = keyboard.next();
 		
 		User user = new User(userPassword, userTel, userAddress);

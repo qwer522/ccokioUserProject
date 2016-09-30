@@ -17,6 +17,7 @@ public class UserLoginShowView {
 	public void userLoginInfoView(User searchedUser){
 		
 		System.out.println("\n\t [*]  내        정        보      [*]");
+		System.out.println( "* 쿠폰은 10장당 한번씩 쓸수 있습니다.");
 		System.out.println("이름\t전화번호\t주소\t등급\t쿠폰\t구매량");
 		
 		System.out.print(searchedUser.getUserName() + "\t");

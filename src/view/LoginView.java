@@ -22,10 +22,10 @@ public class LoginView {
 		
 		System.out.println("\n[*]     로     그     인          [*]   ") ;
 		
-		System.out.print("[*]   아       이        디      [*] : ");
+		System.out.print("ID : ");
 		String loginId = keyboard.next();
 		
-		System.out.print("[*]   비    밀    번     호      [*] : ");
+		System.out.print("Password : ");
 		String loginPassword = keyboard.next();
 		
 		Login newLogin = new Login(loginId, loginPassword);

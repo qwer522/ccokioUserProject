@@ -24,15 +24,15 @@ public class UserRegisterView {
 		String userAddress = null;
 
 		System.out.println("[*]   회   원      가   입      [*]");
-		System.out.print(  "[*]   아      이      디         [*] : ");
+		System.out.print(  "ID : ");
 		userId = keyboard.next();
-		System.out.print(  "[*]   비      밀   번    호     [*] : ");
+		System.out.print(  "Password : ");
 		userPassword = keyboard.next();
-		System.out.print(  "[*]   이                  름      [*] : ");
+		System.out.print(  "이  름 : ");
 		userName = keyboard.next();
-		System.out.print(  "[*]   전      화   번    호     [*] : ");
+		System.out.print(  "전화 번호 : ");
 		userTel = keyboard.next();
-		System.out.print(  "[*]   주                  소      [*] : ");
+		System.out.print(  "  주소 : ");
 		userAddress = keyboard.next();
 
 		User newUser = new User(userId, userPassword, userName, userTel, userAddress);

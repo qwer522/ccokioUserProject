@@ -27,7 +27,7 @@ public class ProductSelectOneView {
 
 	}
 
-	public void productSelectOne(Product searchProduct) {
+	public void productSelectOne(Product searchProduct) { //회원이 조회
 
 		System.out.println("제품 번호 : " + searchProduct.getProductNumber());
 		System.out.println("제품명 : " + searchProduct.getProductName());
@@ -38,7 +38,7 @@ public class ProductSelectOneView {
 		Controllers.getLoginController().requsetCheckLogin(searchProduct);
 	}
 	
-	public void nonUserProductSelectOne(Product searchProduct) {
+	public void nonUserProductSelectOne(Product searchProduct) { //비회원이 조회
 
 		System.out.println("제품 번호 : " + searchProduct.getProductNumber());
 		System.out.println("제품명 : " + searchProduct.getProductName());
