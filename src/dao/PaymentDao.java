@@ -231,11 +231,14 @@ public class PaymentDao {
 				userPayment = new UserPayment();
 				userPayment.setPaymentNumber(rs.getInt(1));
 				userPayment.setUserId(rs.getString(2));
-				userPayment.setOrderNumber(rs.getInt(3));
-				userPayment.setProductName(rs.getString(4));
-				userPayment.setOrderCount(rs.getInt(5));
-				userPayment.setOrderSum(rs.getInt(5) * rs.getInt(6));
-				userPayment.setPaymentDate(rs.getString(7));
+				userPayment.setUserClass(rs.getString(3));
+				userPayment.setOrderNumber(rs.getInt(4));
+				userPayment.setProductName(rs.getString(5));
+				userPayment.setOrderCount(rs.getInt(6));
+				userPayment.setCouponuseAmount(rs.getInt(7));
+				userPayment.setProductPrice(rs.getInt(8));
+				userPayment.setOrderSum(rs.getInt(9));
+				userPayment.setPaymentDate(rs.getString(10));
 				userPayments.add(userPayment);
 
 			}

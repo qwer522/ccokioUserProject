@@ -2,13 +2,17 @@ package domain;
 
 public class UserPayment {
 
-	private int paymentNumber;
-	private String userId;
-	private int orderNumber;
-	private String productName;
-	private int orderAmount;
-	private int orderSum;
-	private String paymentDate;
+	private int paymentNumber;   //결제번호
+	private String userId;       //회원ID
+	private String userClass;    //회원등급
+	private int orderNumber;     //주문번호
+	private String productName;  //상품이름
+	private int orderAmount;     //주문 수량
+	private int couponuseAmount; //사용된 쿠폰
+	private int productPrice;    //상품가격
+	private String paymentDate;  //주문 날짜
+	private int orderSum;        //상품가격
+	
 	
 	public UserPayment() {
 		
@@ -20,16 +24,52 @@ public class UserPayment {
 		
 	}
 
-	public UserPayment(int paymentNumber, String userId, int orderNumber,  String productName, int orderAmount, int orderSum, String paymentDate) {
-		
+	
+
+	public UserPayment(int paymentNumber, String userId, String userClass, int orderNumber, String productName,
+			int orderAmount, int couponuseAmount, int productPrice, String paymentDate, int orderSum) {
 		this.paymentNumber = paymentNumber;
 		this.userId = userId;
+		this.userClass = userClass;
 		this.orderNumber = orderNumber;
 		this.productName = productName;
 		this.orderAmount = orderAmount;
-		this.orderSum = orderSum;
+		this.couponuseAmount = couponuseAmount;
+		this.productPrice = productPrice;
 		this.paymentDate = paymentDate;
-		
+		this.orderSum = orderSum;
+	}
+
+	public int getCouponuseAmount() {
+		return couponuseAmount;
+	}
+
+	public void setCouponuseAmount(int couponuseAmount) {
+		this.couponuseAmount = couponuseAmount;
+	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getUserClass() {
+		return userClass;
+	}
+
+	public void setUserClass(String userClass) {
+		this.userClass = userClass;
+	}
+
+	public int getOrderAmount() {
+		return orderAmount;
+	}
+
+	public void setOrderAmount(int orderAmount) {
+		this.orderAmount = orderAmount;
 	}
 
 	public int getOrderSum() {
