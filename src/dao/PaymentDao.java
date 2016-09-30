@@ -28,20 +28,21 @@ public class PaymentDao {
 		String sql = null;
 		int orderAmountSum = 0;
 		int userClass = 0;
-		int coupon = 0;
+		int coupon = 0; 
+		int addCoupon = 0; //추가될 쿠폰
 
 		try {		
 
 			Controllers.getProgramController().getConnection().setAutoCommit(false);
 
-			sql = " select userOrderNumber from UserOrder where userId = ? and paymentflag = 'n'";
+			sql = " select userOrderNumber, orderAmount from UserOrder where userId = ? and paymentflag = 'n'";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			//처음에만 뷰값증가시키기
 			if(rs.next()) {
-
+				addCoupon = addCoupon + rs.getInt(2);
 				sql = "insert into UserPayment(userPaymentNumber, userOrderNumber) values(User1_paymentNumber_seq.nextval, ?)";
 				pstmt1 = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, rs.getInt(1));
@@ -50,7 +51,7 @@ public class PaymentDao {
 			}
 			//두번째부터 뷰값 현재값으로
 			while(rs.next()) {
-
+				addCoupon = addCoupon + rs.getInt(2);
 				sql = "insert into UserPayment(userPaymentNumber, userOrderNumber) values(User1_paymentNumber_seq.currval, ?)";
 				pstmt1 = Controllers.getProgramController().getConnection().prepareStatement(sql);
 				pstmt1.setInt(1, rs.getInt(1));
@@ -95,7 +96,7 @@ public class PaymentDao {
 			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				coupon = rs.getInt(1);
+				coupon = addCoupon + rs.getInt(1);
 			}
 
 			pstmt.close();
