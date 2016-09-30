@@ -1,4 +1,3 @@
-
 --테이블 보기
 select * from Admin1;
 select * from Managers;
@@ -16,7 +15,7 @@ from product p, userOrder o
 where o.userId = 'qwer522' and o.productName = p.productName and o.paymentflag = 'n';
 
 --테이블삭제
-drop table Admin1t;
+drop table Admin1;
 drop table Managers;
 drop table Product;
 drop table UserPayment;
@@ -41,7 +40,8 @@ create table Admin1
 (
   adminNumber int PRIMARY key,
   adminId varchar2(50) not null UNIQUE,
-  adminPassword varchar2(20) not null
+  adminPassword varchar2(20) not null,
+  adminFlag int default 0
 );
 --매니저
 create table Managers
@@ -49,7 +49,8 @@ create table Managers
   managerNumber int not null UNIQUE,
   managerId varchar2(50) PRIMARY key,
   managerPassword varchar2(20) not null,
-  managerName varchar2(50) not null
+  managerName varchar2(50) not null,
+  ManagerFlag int default 1
 );
 --상품
 create table Product
@@ -104,6 +105,7 @@ create table UserOrder
   paymentflag VARCHAR2(5) default 'n',
   couponuseAmount int default 0
 );
+
 
 insert into UserOrder values(1, 'qwer522', '표창', 20, 'n', 0);
 commit;
