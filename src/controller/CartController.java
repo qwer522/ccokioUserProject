@@ -39,7 +39,7 @@ public class CartController {
 
 		//수량 입력 화면
 		CartRegisterView cartRegisterView = new CartRegisterView();
-		int orderCount = cartRegisterView.cartRegister();
+		int orderCount = cartRegisterView.cartRegister(productNumber);
 
 		boolean success = CartDaoForUser.CartRegister(productNumber, orderCount);
 
