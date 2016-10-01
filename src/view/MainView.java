@@ -97,6 +97,7 @@ public class MainView {
 			}else if(nonUserMainViewNumber == 2){
 				Controllers.getCartNonUserController().requestCartNonUserList();
 			}else if(nonUserMainViewNumber == 3){
+				Controllers.getCartNonUserController().requestcartClear();
 				Controllers.getMainController().requestMainView();
 			}else {
 				Controllers.getMainController().requestNonUserMainView();
