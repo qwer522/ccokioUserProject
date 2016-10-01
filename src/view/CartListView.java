@@ -36,8 +36,8 @@ public class CartListView {
 
 			sum = sum + (carts.get(i).getOrderAmount() * carts.get(i).getProductPrice());
 
-			System.out.println("총 금액 : " + sum + "\n");
 		}
+		System.out.println("총 금액 : " + sum + "\n");
 		Controllers.getCartController().requestUserCartView();
 
 	}

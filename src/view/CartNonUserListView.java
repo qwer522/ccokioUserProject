@@ -36,8 +36,8 @@ private Scanner keyboard;
 
 			sum = sum + (CartNonUsers.get(i).getOrderAmount() * CartNonUsers.get(i).getProductPrice());
 
-			System.out.println("총 금액 : " + sum + "\n");
 		}
+		System.out.println("총 금액 : " + sum + "\n");
 		Controllers.getCartNonUserController().requestNonUserCartView();
 
 	}
