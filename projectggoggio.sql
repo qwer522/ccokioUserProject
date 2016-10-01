@@ -1,4 +1,4 @@
---테이블 보기
+﻿--테이블 보기
 select * from Admin1;
 select * from Managers;
 select * from Product;
@@ -49,6 +49,7 @@ create table Managers
   managerName varchar2(50) not null,
   ManagerFlag int default 1
 );
+
 --상품
 create table Product
 (
@@ -58,8 +59,10 @@ create table Product
   productPrice int not null,
   productOrigin varchar2(50) not null
 );
-
-insert into Product values(1, '표창', '닌자', 2000, '시골');
+--상품 기본 추가 자료
+insert into Product values(1, '후라이드', '고소함', 7000, '꼬끼오');
+insert into Product values(2, '양념치킨', '달달함', 8000, '꼬끼오');
+insert into Product values(3, '간장치킨', '짬', 8500, '꼬끼오');
 commit;
 
 --할인율 테이블
@@ -73,7 +76,7 @@ create table discount
 insert into discount values(1,'실버', 0.9);
 insert into discount values(2,'골드', 0.85);
 insert into discount values(3,'플래티넘', 0.8);
-
+commit;
 
 --회원 (1넣은이유는 user이란게 시스템에있어서)
 create table User1
@@ -117,6 +120,7 @@ create table NonUser
   nonUserTel varchar2(50) primary key,
   nonUserAddress varchar2(50)  not null
 );
+
 --비회원 주문
 create table NonUserOrder
 (
