@@ -183,7 +183,7 @@ create view Nonuserpay_view_paymentInfor
 as
 select pay.nonUserPaymentNumber , o.nonUserTel, o.nonUserOrderNumber, p.productName, o.orderAmount, p.productPrice, o.orderAmount * p.productPrice as orderSum, pay.paymentDate 
 from NonUserOrder o, product p, NonUserPayment pay
-where p.productName = o.productName and o.paymentflag = 'y';
+where p.productName = o.productName and o.paymentflag = 'y' and pay.nonUserOrderNumber = o.nonUserOrderNumber ;
 
 drop view Nonuserpay_view_paymentInfor;
 
