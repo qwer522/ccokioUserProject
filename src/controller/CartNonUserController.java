@@ -20,7 +20,6 @@ public class CartNonUserController {
 
 	public void requestloadCartNonUserList() { //DB 불러오기
 
-		requestcartClear();
 		boolean success = cartDaoForNonUser.loadCartNonUserList();
 
 		if(success) {

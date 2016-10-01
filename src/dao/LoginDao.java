@@ -66,6 +66,14 @@ public class LoginDao {
 		boolean success = false;
 		
 		LoginRepository.setLogin(null);
+		success = true;
+	
+		return success;
+	}
+	
+	public boolean nonUserLogOut() {
+		boolean success = false;
+		
 		NonUserRepository.setNonUsers(null);
 		success = true;
 	

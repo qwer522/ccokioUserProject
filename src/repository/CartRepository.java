@@ -16,6 +16,9 @@ public class CartRepository {
 
 		cart = new ArrayList<Cart>();
 		cartNumber = 0;
+		coupon = 0;
+		userClass = null;
+		totalPrice = 0;
 	}
 
 	public static double getTotalPrice() {

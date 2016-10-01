@@ -164,6 +164,7 @@ public class PaymentController {
 			paymentListView.userPaymentList(userPayments);
 		}else {
 			new AlertView().alert("결제 내역이 없습니다.");
+			Controllers.getCartController().requestCartClear();
 			Controllers.getLoginController().requestLogout();
 		}
 
@@ -180,7 +181,7 @@ public class PaymentController {
 			paymentListView.nonUserPaymentList(nonUserPayments);
 		}else {
 			new AlertView().alert("\t결제 내역이 없습니다.\t");
-			Controllers.getLoginController().requestLogout();
+			Controllers.getLoginController().requestNonUserLogout();
 		}
 
 	}

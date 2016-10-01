@@ -156,7 +156,7 @@ public class PaymentDao {
 
 			sql = " select nonUserOrderNumber from NonUserOrder where nonUserTel = ? and paymentflag = 'n'";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel()); //로그인 레파지토이 아이디로 호출할것 qwer522는 대체로넣어놓은것
+			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel()); 
 			rs = pstmt.executeQuery();
 
 			//처음에만 뷰값증가시키기

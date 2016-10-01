@@ -13,6 +13,7 @@ public class CartNonUserRepository {
 	public CartNonUserRepository() {
 		CartNonUsers = new ArrayList<CartNonUser>();
 		productPriceSum = 0;
+		cartLastNumber = 0;
 	}
 
 	public static ArrayList<CartNonUser> getCartNonUsers() {

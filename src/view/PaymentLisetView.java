@@ -87,7 +87,7 @@ public class PaymentLisetView {
 		System.out.println("[*]  결   제    내    역    정  보    조   회  [*]");
 		System.out.println("        등급   별로   할인   적용           ");
 		System.out.println();
-		System.out.println("결제번호\tID\t회원등급\t주문번호\t제품이름\t수량\t사용한쿠폰\t가격\t합계\t주문날짜");
+		System.out.println("결제번호\tID\t회원등급\t주문번호\t제품이름\t수량\t사용쿠폰\t가격\t합계\t주문날짜");
 		for(int i = 0 ; i < userPayments.size(); i++) {
 
 			System.out.print(userPayments.get(i).getPaymentNumber() + "\t");

@@ -169,7 +169,7 @@ create view Userpayment_view_paymentInfor
 as
 select pay.userPaymentNumber, o.userId, d.className, o.userOrderNumber, p.productName, o.orderAmount, o.couponuseAmount, p.productPrice, pay.paymentDate, (((o.orderAmount - o.couponuseAmount)*p.productPrice)* d.DISCOUNT) as orderSum
 from Userorder o, product p, Userpayment pay, discount d, user1 u
-where p.productName = o.productName and o.paymentflag = 'y' and d.udiscountClassNumber = u.userClass and pay.userOrderNumber = o.userOrderNumber;
+where p.productName = o.productName and o.paymentflag = 'y' and d.udiscountClassNumber = u.userClass and pay.userOrderNumber = o.userOrderNumber and u.userId = o.userId;
 
 drop view Userpayment_view_paymentInfor;
 
@@ -178,7 +178,7 @@ create view UserOrder_view_Infor
 as
 select p.productName, o.orderAmount, p.productPrice, o.couponuseAmount, u.userId
 from product p, userOrder o , user1 u
-where o.productName = p.productName and o.paymentflag = 'n';
+where o.productName = p.productName and o.paymentflag = 'n' and u.userId = o.userId;
 
 drop view UserOrder_view_Infor;
 
@@ -196,6 +196,6 @@ create view NonUserOrder_view_Infor
 as
 select p.productName, o.orderAmount, p.productPrice, p.productPrice * o.orderAmount as orderSum ,u.nonUserTel
 from product p, NonUserOrder o, NonUser u
-where o.productName = p.productName and o.paymentflag = 'n';
+where o.productName = p.productName and o.paymentflag = 'n' and u.nonUserTel = o.nonUserTel;
 
 drop view NonUserOrder_view_Infor;

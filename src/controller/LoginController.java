@@ -39,17 +39,26 @@ public class LoginController {
 
 	}
 
-	public void requestLogout(){ //로그아웃
+	public void requestLogout(){ //회원 로그아웃
 
 		// 로그아웃 하면서  리포지 토리에있는 카트정보삭제
 		boolean success = loginDao.logOut();
 		if(success == true) {
-			new AlertView().alert("장바구니 초기화 성공");
-			Controllers.getCartController().requestCartClear();
 			Controllers.getMainController().requestMainView();
 		}else {
-			new AlertView().alert("장바구니 초기화 실패");
 			Controllers.getMainController().requestUserMainView();
+		}
+
+	}
+	
+	public void requestNonUserLogout(){ //비회원 로그아웃
+
+		// 로그아웃 하면서  리포지 토리에있는 카트정보삭제
+		boolean success = loginDao.nonUserLogOut();
+		if(success == true) {
+			Controllers.getMainController().requestMainView();
+		}else {
+			Controllers.getMainController().requestNonUserMainView();
 		}
 
 	}

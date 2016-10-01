@@ -70,6 +70,7 @@ public class MainView {
 			}else if(userMainViewNumber == 3){
 				Controllers.getUserController().requestUserInfo();
 			}else if(userMainViewNumber == 4){
+				Controllers.getCartController().requestCartClear();
 				Controllers.getLoginController().requestLogout();
 			}else {
 				Controllers.getMainController().requestUserMainView();
@@ -98,6 +99,7 @@ public class MainView {
 				Controllers.getCartNonUserController().requestCartNonUserList();
 			}else if(nonUserMainViewNumber == 3){
 				Controllers.getCartNonUserController().requestcartClear();
+				Controllers.getLoginController().requestNonUserLogout();
 				Controllers.getMainController().requestMainView();
 			}else {
 				Controllers.getMainController().requestNonUserMainView();
