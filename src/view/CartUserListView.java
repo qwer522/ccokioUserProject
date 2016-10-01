@@ -5,19 +5,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Controllers;
-import domain.Cart;
+import domain.CartUser;
 
-public class CartListView {
+public class CartUserListView {
 
 	private Scanner keyboard;
 
-	public CartListView() {
+	public CartUserListView() {
 
 		keyboard = new Scanner(System.in);
 
 	}
 
-	public void printCartList(ArrayList<Cart> carts) {
+	public void printCartList(ArrayList<CartUser> carts) {
 
 		int sum = 0;
 

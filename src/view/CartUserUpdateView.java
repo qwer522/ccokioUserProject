@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 import controller.Controllers;
 
-public class CartUpdateView {
+public class CartUserUpdateView {
 
 	private Scanner keyboard;
 
-	public CartUpdateView() {
+	public CartUserUpdateView() {
 
 		keyboard = new Scanner(System.in);
 	}

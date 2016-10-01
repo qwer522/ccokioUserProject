@@ -6,7 +6,7 @@ public class Controllers {
 	private static MainController mainController;
 	private static PaymentController paymentController;
 	private static LoginController loginController;
-	private static CartController cartController;
+	private static CartUserController cartController;
 	private static UserController userController;
 	private static NonUserController nonUserController;
 	private static ProductController productController;
@@ -19,7 +19,7 @@ public class Controllers {
 		mainController = new MainController();
 		programController = new ProgramController();
 		paymentController = new PaymentController();
-		cartController = new CartController();
+		cartController = new CartUserController();
 		userController = new UserController();
 		nonUserController = new NonUserController();
 		productController = new ProductController();
@@ -56,7 +56,7 @@ public class Controllers {
 		return paymentController;
 	}
 
-	public static CartController getCartController() {
+	public static CartUserController getCartController() {
 		return cartController;
 	}
 	public static UserController getUserController() {

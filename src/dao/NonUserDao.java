@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 import controller.Controllers;
 import domain.NonUser;
-import repository.NonUserRepository;
+import repository.LoginNonUserRepository;
 
 public class NonUserDao {
 
 	public NonUserDao() {
 
-		new NonUserRepository();
+		new LoginNonUserRepository();
 
 	}
 
@@ -33,7 +33,7 @@ public class NonUserDao {
 			
 			// 메모리(repository)에 비회원 데이터 삽입 
 			pstmt.executeUpdate();
-			NonUserRepository.setNonUsers(newNonUser);
+			LoginNonUserRepository.setNonUsers(newNonUser);
 			success = true;
 
 		} catch (SQLException e) {
@@ -74,7 +74,7 @@ public class NonUserDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				NonUserRepository.setNonUsers(newNonUser);
+				LoginNonUserRepository.setNonUsers(newNonUser);
 				success = true;
 			}else {
 

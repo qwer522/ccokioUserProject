@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import controller.Controllers;
 import repository.CartNonUserRepository;
-import repository.NonUserRepository;
+import repository.LoginNonUserRepository;
 
 public class OrderNonUserDao {
 
@@ -31,7 +31,7 @@ public class OrderNonUserDao {
 					+ "from Product p, NonUserOrder o  "
 					+ "where o.productName = p.productName and ? = o.nonUserTel and o.paymentflag = 'n')";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
+			pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel());
 			pstmt.executeUpdate();
 
 			pstmt.close();
@@ -39,7 +39,7 @@ public class OrderNonUserDao {
 				
 				sql = "insert into NonUserOrder(nonUserOrderNumber, nonUserTel, productName, orderAmount) values(NonUser_orderNumber_seq.nextval, ?, ?, ?)";
 				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-				pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
+				pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel());
 				pstmt.setString(2, CartNonUserRepository.getCartNonUsers().get(i).getProductName());
 				pstmt.setInt(3, CartNonUserRepository.getCartNonUsers().get(i).getOrderAmount());
 				pstmt.executeUpdate();

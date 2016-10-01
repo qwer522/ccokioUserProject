@@ -2,19 +2,19 @@ package repository;
 
 import java.util.ArrayList;
 
-import domain.Cart;
+import domain.CartUser;
 
-public class CartRepository {
+public class CartUserRepository {
 
-	private static ArrayList<Cart> cart;
+	private static ArrayList<CartUser> cart;
 	private static int cartNumber;   //장바구니 번호 
 	private static int coupon;       //쿠폰
 	private static String userClass; //회원 등급
 	private static double totalPrice;//총 가격
 
-	public CartRepository() {
+	public CartUserRepository() {
 
-		cart = new ArrayList<Cart>();
+		cart = new ArrayList<CartUser>();
 		cartNumber = 0;
 		coupon = 0;
 		userClass = null;
@@ -26,7 +26,7 @@ public class CartRepository {
 	}
 
 	public static void setTotalPrice(double tatolPrice) {
-		CartRepository.totalPrice = tatolPrice;
+		CartUserRepository.totalPrice = tatolPrice;
 	}
 
 	public static String getUserClass() {
@@ -34,7 +34,7 @@ public class CartRepository {
 	}
 
 	public static void setUserClass(String userClass) {
-		CartRepository.userClass = userClass;
+		CartUserRepository.userClass = userClass;
 	}
 
 	public static int getCoupon() {
@@ -42,15 +42,15 @@ public class CartRepository {
 	}
 
 	public static void setCoupon(int coupon) {
-		CartRepository.coupon = coupon;
+		CartUserRepository.coupon = coupon;
 	}
 
-	public static ArrayList<Cart> getCart() {
+	public static ArrayList<CartUser> getCart() {
 		return cart;
 	}
 
-	public static void setCart(ArrayList<Cart> cart) {
-		CartRepository.cart = cart;
+	public static void setCart(ArrayList<CartUser> cart) {
+		CartUserRepository.cart = cart;
 	}
 
 	public static int getCartNumber() {
@@ -58,7 +58,7 @@ public class CartRepository {
 	}
 
 	public static void setCartNumber(int cartNumber) {
-		CartRepository.cartNumber = cartNumber;
+		CartUserRepository.cartNumber = cartNumber;
 	}
 
 }

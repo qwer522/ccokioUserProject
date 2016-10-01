@@ -6,14 +6,14 @@ import java.sql.SQLException;
 
 import controller.Controllers;
 import domain.Login;
-import repository.LoginRepository;
-import repository.NonUserRepository;
+import repository.LoginUserRepository;
+import repository.LoginNonUserRepository;
 
 public class LoginDao {
 
 	public LoginDao() {
 
-		new LoginRepository();
+		new LoginUserRepository();
 
 	}
 
@@ -32,7 +32,7 @@ public class LoginDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				LoginRepository.setLogin(newLogin);
+				LoginUserRepository.setLogin(newLogin);
 				success = true;
 			}else {
 				
@@ -55,7 +55,7 @@ public class LoginDao {
 		
 		boolean success = false;
 		
-		if (LoginRepository.getLogin() != null) {
+		if (LoginUserRepository.getLogin() != null) {
 			success = true;
 		}
 
@@ -65,7 +65,7 @@ public class LoginDao {
 	public boolean logOut() {
 		boolean success = false;
 		
-		LoginRepository.setLogin(null);
+		LoginUserRepository.setLogin(null);
 		success = true;
 	
 		return success;
@@ -74,7 +74,7 @@ public class LoginDao {
 	public boolean nonUserLogOut() {
 		boolean success = false;
 		
-		NonUserRepository.setNonUsers(null);
+		LoginNonUserRepository.setNonUsers(null);
 		success = true;
 	
 		return success;

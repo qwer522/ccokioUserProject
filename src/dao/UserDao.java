@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import controller.Controllers;
 import domain.User;
-import repository.LoginRepository;
+import repository.LoginUserRepository;
 import view.AlertView;
 
 public class UserDao {
@@ -83,7 +83,7 @@ public class UserDao {
 			pstmt.setString(1, user.getUserPassword());
 			pstmt.setString(2, user.getUserTel());
 			pstmt.setString(3, user.getUserAddress());
-			pstmt.setString(4, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(4, LoginUserRepository.getLogin().getLoginId());
 			pstmt.executeUpdate();
 
 			success = true;
@@ -115,10 +115,10 @@ public class UserDao {
 
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
 			
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			pstmt.executeUpdate();
 			
-			LoginRepository.setLogin(null);
+			LoginUserRepository.setLogin(null);
 			
 			success = true;
 
@@ -140,7 +140,7 @@ public class UserDao {
 		try {
 			String sql = "select userName, userTel, userAddress, userClass, Coupon, purchaseQuantity from user1 where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {

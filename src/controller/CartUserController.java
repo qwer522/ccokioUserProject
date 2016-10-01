@@ -3,17 +3,17 @@ package controller;
 import java.util.ArrayList;
 
 import dao.CartDaoForUser;
-import domain.Cart;
+import domain.CartUser;
 import view.AlertView;
-import view.CartListView;
-import view.CartRegisterView;
-import view.CartUpdateView;
+import view.CartUserListView;
+import view.CartUserRegisterView;
+import view.CartUserUpdateView;
 
-public class CartController {
+public class CartUserController {
 
 	private CartDaoForUser CartDaoForUser;	
 
-	public CartController() {
+	public CartUserController() {
 
 		CartDaoForUser = new CartDaoForUser();
 	}
@@ -38,7 +38,7 @@ public class CartController {
 
 
 		//수량 입력 화면
-		CartRegisterView cartRegisterView = new CartRegisterView();
+		CartUserRegisterView cartRegisterView = new CartUserRegisterView();
 		int orderCount = cartRegisterView.cartRegister(productNumber);
 
 		boolean success = CartDaoForUser.CartRegister(productNumber, orderCount);
@@ -59,9 +59,9 @@ public class CartController {
 	//2. 장바구니 목록 (조회의 기능까지 포함 : 모든 정보 다 보여줄 것)
 	public void requestCartList() {
 
-		ArrayList<Cart> carts = CartDaoForUser.selectCartList();
+		ArrayList<CartUser> carts = CartDaoForUser.selectCartList();
 
-		CartListView cartListView = new CartListView();
+		CartUserListView cartListView = new CartUserListView();
 		cartListView.printCartList(carts);
 
 	}
@@ -70,7 +70,7 @@ public class CartController {
 	public void requestUpdateOrderAmount() {
 
 		//view에서 상품번호와 수정할 수량번호 입력
-		CartUpdateView cartUpdateView = new CartUpdateView();
+		CartUserUpdateView cartUpdateView = new CartUserUpdateView();
 		cartUpdateView.updateOrderCount();
 	}
 
@@ -104,7 +104,7 @@ public class CartController {
 	//5. 장바구니 상품 삭제
 	public void requestCartDeleteOne() {
 
-		CartUpdateView cartUpdateView = new CartUpdateView();
+		CartUserUpdateView cartUpdateView = new CartUserUpdateView();
 		cartUpdateView.deleteCart();
 	}
 
@@ -123,7 +123,7 @@ public class CartController {
 
 	public void requestUserCartView() { //회원 장바구니 메뉴
 
-		CartListView cartListView = new CartListView();
+		CartUserListView cartListView = new CartUserListView();
 		cartListView.userCartView();
 
 	}

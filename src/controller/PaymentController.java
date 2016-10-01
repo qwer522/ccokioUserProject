@@ -3,7 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import dao.PaymentDao;
-import domain.Cart;
+import domain.CartUser;
 import domain.Login;
 import domain.NonUser;
 import domain.NonUserPayment;
@@ -63,7 +63,7 @@ public class PaymentController {
 
 		//쿠폰 사용을 위해 주문 db 불러오기 
 		Controllers.getCartController().requestLoadCartList();
-		ArrayList<Cart> carts = paymentDao.selectCartList();
+		ArrayList<CartUser> carts = paymentDao.selectCartList();
 
 		int couponHonorablyAmount = paymentDao.couponHonorablyAmount();
 		double totalPrice = paymentDao.totalPrice();

@@ -2,11 +2,11 @@ package repository;
 
 import domain.Login;
 
-public class LoginRepository {
+public class LoginUserRepository {
 
 	private static Login login;
 
-	public LoginRepository() {
+	public LoginUserRepository() {
 
 		login = null;
 	}
@@ -16,7 +16,7 @@ public class LoginRepository {
 	}
 
 	public static void setLogin(Login login) {
-		LoginRepository.login = login;
+		LoginUserRepository.login = login;
 	}
 
 }

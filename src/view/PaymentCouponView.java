@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.Controllers;
-import domain.Cart;
+import domain.CartUser;
 
 public class PaymentCouponView {
 
@@ -17,7 +17,7 @@ public class PaymentCouponView {
 
 	}
 
-	public void couponUseView(ArrayList<Cart> carts, int couponHonorablyAmount, String userClass, double totalPrice) { //쿠폰 사용한다고했을때 리스트나오기
+	public void couponUseView(ArrayList<CartUser> carts, int couponHonorablyAmount, String userClass, double totalPrice) { //쿠폰 사용한다고했을때 리스트나오기
 
 		System.out.println("\n   [*]  쿠  폰   사   용       가   능  목    록[*]\n");
 		System.out.println("할인율 실버 : 10% , 골드 : 15%, 플래티넘 : 20%");

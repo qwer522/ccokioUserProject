@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import controller.Controllers;
 import domain.CartNonUser;
 import repository.CartNonUserRepository;
-import repository.NonUserRepository;
+import repository.LoginNonUserRepository;
 
 public class CartDaoForNonUser {
 
@@ -29,7 +29,7 @@ public class CartDaoForNonUser {
 			String sql = "select * from NonUserOrder_view_Infor where nonUserTel = ?";
 
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
+			pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

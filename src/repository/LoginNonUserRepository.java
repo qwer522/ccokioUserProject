@@ -2,11 +2,11 @@ package repository;
 
 import domain.NonUser;
 
-public class NonUserRepository {
+public class LoginNonUserRepository {
 
 	private static NonUser nonUsers;
 
-	public NonUserRepository() {
+	public LoginNonUserRepository() {
 		nonUsers = new NonUser();
 
 	}
@@ -16,7 +16,7 @@ public class NonUserRepository {
 	}
 
 	public static void setNonUsers(NonUser nonUsers) {
-		NonUserRepository.nonUsers = nonUsers;
+		LoginNonUserRepository.nonUsers = nonUsers;
 	}
 
 }

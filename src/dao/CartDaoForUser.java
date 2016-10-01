@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controller.Controllers;
-import domain.Cart;
-import repository.CartRepository;
-import repository.LoginRepository;
+import domain.CartUser;
+import repository.CartUserRepository;
+import repository.LoginUserRepository;
 
 public class CartDaoForUser {
 
 	public CartDaoForUser() {
-		new CartRepository();
+		new CartUserRepository();
 	}
 	// 0. 처음 로그인 시 DB에 있는 결제되지 않은 주문목록 장바구니로 불러오기
 	public boolean loadCartList() {
@@ -29,19 +29,19 @@ public class CartDaoForUser {
 			String sql = "select * from UserOrder_view_Infor where userId = ?";
 			
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Cart cart = new Cart();
-				CartRepository.setCartNumber(CartRepository.getCartNumber() + 1);
-				cart.setCartNumber(CartRepository.getCartNumber());
+				CartUser cart = new CartUser();
+				CartUserRepository.setCartNumber(CartUserRepository.getCartNumber() + 1);
+				cart.setCartNumber(CartUserRepository.getCartNumber());
 				cart.setProductName(rs.getString(1));
 				cart.setOrderAmount(rs.getInt(2));
 				cart.setProductPrice(rs.getInt(3));
 				cart.setCouponuseAmount(rs.getInt(4));
 				cart.setProductPriceSum((rs.getInt(2) - rs.getInt(4)) * rs.getInt(3));
-				CartRepository.getCart().add(cart);	
+				CartUserRepository.getCart().add(cart);	
 				
 			}
 			
@@ -50,16 +50,16 @@ public class CartDaoForUser {
 			
 			sql = "select u.coupon, d.className, d.discount  from user1 u, discount d where userId = ? and udiscountClassNumber = userClass";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				coupon = rs.getInt(1);
-				CartRepository.setCoupon(coupon);
-				CartRepository.setUserClass(rs.getString(2));
-				for(int i = 0 ; i < CartRepository.getCart().size(); i++) {//총합산 계산
-				sum = sum + CartRepository.getCart().get(i).getProductPriceSum();
+				CartUserRepository.setCoupon(coupon);
+				CartUserRepository.setUserClass(rs.getString(2));
+				for(int i = 0 ; i < CartUserRepository.getCart().size(); i++) {//총합산 계산
+				sum = sum + CartUserRepository.getCart().get(i).getProductPriceSum();
 				}
-				CartRepository.setTotalPrice(sum * rs.getDouble(3));
+				CartUserRepository.setTotalPrice(sum * rs.getDouble(3));
 			}
 			success = true;
 
@@ -77,7 +77,7 @@ public class CartDaoForUser {
 		boolean success = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Cart cart = new Cart();
+		CartUser cart = new CartUser();
 
 		String sql = "select productName, productPrice from product where productNumber = ?";
 		try {
@@ -87,10 +87,10 @@ public class CartDaoForUser {
 
 			if (rs.next()) {
 				// 장바구니에 이미 담겨 있으면 수량만 증가
-				for (int i = 0; i < CartRepository.getCart().size(); i++) {
-					if (CartRepository.getCart().get(i).getProductName().equals(rs.getString(1))) {
-						CartRepository.getCart().get(i)
-						.setOrderAmount(CartRepository.getCart().get(i).getOrderAmount() + orderCount);
+				for (int i = 0; i < CartUserRepository.getCart().size(); i++) {
+					if (CartUserRepository.getCart().get(i).getProductName().equals(rs.getString(1))) {
+						CartUserRepository.getCart().get(i)
+						.setOrderAmount(CartUserRepository.getCart().get(i).getOrderAmount() + orderCount);
 						if (rs != null) {
 							try {
 								rs.close();
@@ -111,12 +111,12 @@ public class CartDaoForUser {
 					}
 				}
 
-				CartRepository.setCartNumber(CartRepository.getCartNumber() + 1);
-				cart.setCartNumber(CartRepository.getCartNumber());
+				CartUserRepository.setCartNumber(CartUserRepository.getCartNumber() + 1);
+				cart.setCartNumber(CartUserRepository.getCartNumber());
 				cart.setProductName(rs.getString(1));
 				cart.setProductPrice(rs.getInt(2));
 				cart.setOrderAmount(orderCount);
-				CartRepository.getCart().add(cart);
+				CartUserRepository.getCart().add(cart);
 				success = true;
 			}
 
@@ -132,9 +132,9 @@ public class CartDaoForUser {
 	}
 
 	// 2. 장바구니 목록 (조회의 기능까지 포함 : 모든 정보 다 보여줄 것)
-	public ArrayList<Cart> selectCartList() {
+	public ArrayList<CartUser> selectCartList() {
 
-		return CartRepository.getCart();
+		return CartUserRepository.getCart();
 
 	}
 
@@ -142,9 +142,9 @@ public class CartDaoForUser {
 	public boolean updateOrderAmount(int cartNumber, int updateOrderCount) {
 		boolean success = false;
 
-		for (int i = 0; i < CartRepository.getCart().size(); i++) {
-			if (CartRepository.getCart().get(i).getCartNumber() == cartNumber) {
-				CartRepository.getCart().get(i).setOrderAmount(updateOrderCount);
+		for (int i = 0; i < CartUserRepository.getCart().size(); i++) {
+			if (CartUserRepository.getCart().get(i).getCartNumber() == cartNumber) {
+				CartUserRepository.getCart().get(i).setOrderAmount(updateOrderCount);
 				break;
 			}
 		}
@@ -157,7 +157,7 @@ public class CartDaoForUser {
 		
 		boolean success = false;
 
-		new CartRepository();
+		new CartUserRepository();
 
 		success = true;
 
@@ -169,9 +169,9 @@ public class CartDaoForUser {
 	public boolean cartDeleteOne(int cartNumber) {
 		boolean success = false;
 
-		for(int i = 0; i < CartRepository.getCart().size(); i++) {
-			if(cartNumber == CartRepository.getCart().get(i).getCartNumber()) {
-				CartRepository.getCart().remove(i);
+		for(int i = 0; i < CartUserRepository.getCart().size(); i++) {
+			if(cartNumber == CartUserRepository.getCart().get(i).getCartNumber()) {
+				CartUserRepository.getCart().remove(i);
 				break;
 			}
 		}

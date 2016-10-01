@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import controller.Controllers;
-import repository.CartRepository;
-import repository.LoginRepository;
+import repository.CartUserRepository;
+import repository.LoginUserRepository;
 
 public class OrderUserDao {
 
@@ -30,17 +30,17 @@ public class OrderUserDao {
 					+ " from Product p, UserOrder o "
 					+ "where o.productName = p.productName and ? = o.USERID and o.paymentflag = 'n')";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			pstmt.executeUpdate();
 
 			pstmt.close();
-			for(int i = 0 ; i < CartRepository.getCart().size(); i++) {		
+			for(int i = 0 ; i < CartUserRepository.getCart().size(); i++) {		
 				
 				sql = "insert into UserOrder(userOrderNumber, userId, productName, orderAmount) values(User1_orderNumber_seq.nextval, ?, ?, ?)";
 				pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-				pstmt.setString(1, LoginRepository.getLogin().getLoginId());
-				pstmt.setString(2, CartRepository.getCart().get(i).getProductName());
-				pstmt.setInt(3, CartRepository.getCart().get(i).getOrderAmount());
+				pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
+				pstmt.setString(2, CartUserRepository.getCart().get(i).getProductName());
+				pstmt.setInt(3, CartUserRepository.getCart().get(i).getOrderAmount());
 				pstmt.executeUpdate();
 				success = true;
 

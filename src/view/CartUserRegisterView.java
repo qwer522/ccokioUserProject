@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 import controller.Controllers;
 
-public class CartRegisterView {
+public class CartUserRegisterView {
 
 	private Scanner keyboard;
 	
-	public CartRegisterView() {
+	public CartUserRegisterView() {
 		
 		keyboard = new Scanner(System.in);
 	}

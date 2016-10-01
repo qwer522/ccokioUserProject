@@ -1,6 +1,6 @@
 package domain;
 
-public class Cart {
+public class CartUser {
 
 	private int cartNumber;      //장바구니 번호
 	private String productName;  //상품 이름 
@@ -9,11 +9,11 @@ public class Cart {
 	private int couponuseAmount; //쿠폰 사용 개수
 	private int productPriceSum; //상품 합계
 	
-	public Cart() {
+	public CartUser() {
 		
 	}
 	
-	public Cart(int cartNumber, String productName, int orderAmount, int productPrice, int couponuseAmount, int productPriceSum) {
+	public CartUser(int cartNumber, String productName, int orderAmount, int productPrice, int couponuseAmount, int productPriceSum) {
 		
 		this.cartNumber = cartNumber;
 		this.productName = productName;

@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import controller.Controllers;
-import domain.Cart;
+import domain.CartUser;
 import domain.Login;
 import domain.NonUser;
 import domain.NonUserPayment;
 import domain.UserPayment;
-import repository.CartRepository;
-import repository.LoginRepository;
-import repository.NonUserRepository;
+import repository.CartUserRepository;
+import repository.LoginUserRepository;
+import repository.LoginNonUserRepository;
 
 public class PaymentDao {
 
@@ -39,7 +39,7 @@ public class PaymentDao {
 
 			sql = " select userOrderNumber, orderAmount from UserOrder where userId = ? and paymentflag = 'n'";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			//처음에만 뷰값증가시키기
@@ -65,7 +65,7 @@ public class PaymentDao {
 
 			sql = "update UserOrder set paymentflag = 'y' where paymentflag = 'n' and userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			pstmt.executeUpdate();
 
 			pstmt.close();
@@ -74,7 +74,7 @@ public class PaymentDao {
 			//상품 수량 뽑아오기
 			sql = "select orderAmount from UserOrder where paymentflag = 'y' and userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){ //수량 누적증가시키기
@@ -95,7 +95,7 @@ public class PaymentDao {
 			//쿠폰 개수 증가
 			sql = "select coupon from User1 where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				coupon = addCoupon + rs.getInt(1);
@@ -109,7 +109,7 @@ public class PaymentDao {
 			pstmt.setInt(1, orderAmountSum);
 			pstmt.setInt(2, userClass);
 			pstmt.setInt(3, coupon);
-			pstmt.setString(4, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(4, LoginUserRepository.getLogin().getLoginId());
 			pstmt.executeUpdate();
 
 			success = true;
@@ -156,7 +156,7 @@ public class PaymentDao {
 
 			sql = " select nonUserOrderNumber from NonUserOrder where nonUserTel = ? and paymentflag = 'n'";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel()); 
+			pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel()); 
 			rs = pstmt.executeQuery();
 
 			//처음에만 뷰값증가시키기
@@ -181,7 +181,7 @@ public class PaymentDao {
 
 			sql = "update NonUserOrder set paymentflag = 'y' where paymentflag = 'n' and nonUserTel = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
+			pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel());
 			pstmt.executeUpdate();
 
 			success = true;
@@ -226,7 +226,7 @@ public class PaymentDao {
 
 			sql = "select * from Userpayment_view_paymentInfor where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -272,7 +272,7 @@ public class PaymentDao {
 
 			sql = "select * from Nonuserpay_view_paymentInfor where nonUserTel = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, NonUserRepository.getNonUsers().getNonUserTel());
+			pstmt.setString(1, LoginNonUserRepository.getNonUsers().getNonUserTel());
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -313,7 +313,7 @@ public class PaymentDao {
 
 			String sql = "select coupon from User1 where userId = ?";
 			pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-			pstmt.setString(1, LoginRepository.getLogin().getLoginId());
+			pstmt.setString(1, LoginUserRepository.getLogin().getLoginId());
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
@@ -336,16 +336,16 @@ public class PaymentDao {
 		return userCoupon;
 	}
 
-	public ArrayList<Cart> selectCartList() { //장바구니 레파지토리 호출
+	public ArrayList<CartUser> selectCartList() { //장바구니 레파지토리 호출
 
-		return CartRepository.getCart();
+		return CartUserRepository.getCart();
 
 	}
 
 	public int couponHonorablyAmount() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		int couponHonorablyAmount = 0;
-		couponHonorablyAmount = CartRepository.getCoupon();
+		couponHonorablyAmount = CartUserRepository.getCoupon();
 		return couponHonorablyAmount;
 
 	}
@@ -353,7 +353,7 @@ public class PaymentDao {
 	public String userClass() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		String userClass = null;
-		userClass = CartRepository.getUserClass();
+		userClass = CartUserRepository.getUserClass();
 		return userClass;
 
 	}
@@ -361,7 +361,7 @@ public class PaymentDao {
 	public double totalPrice() { //쿠폰 변수에 저장시키기 리스트에 보여주기 위해
 
 		double totalPrice = 0;
-		totalPrice = CartRepository.getTotalPrice();
+		totalPrice = CartUserRepository.getTotalPrice();
 		return totalPrice;
 
 	}
@@ -369,8 +369,8 @@ public class PaymentDao {
 	public boolean couponUseNumber(int number) { //번호있는지 확인
 
 		boolean success =false;
-		for(int i = 0 ; i < CartRepository.getCart().size() ; i ++) {
-			if(CartRepository.getCart().get(i).getCartNumber() == number) {
+		for(int i = 0 ; i < CartUserRepository.getCart().size() ; i ++) {
+			if(CartUserRepository.getCart().get(i).getCartNumber() == number) {
 				success = true;
 			}
 
@@ -384,27 +384,27 @@ public class PaymentDao {
 		boolean success =false;
 		PreparedStatement pstmt = null;
 
-		if(CartRepository.getCoupon()/10 >= couponuseAmount) { //쿠폰개수가 더많으면 실행 나누기한이유는 셀렉트할때 그대로 총개수를 가지고와서 몫만나오게 10나눔
+		if(CartUserRepository.getCoupon()/10 >= couponuseAmount) { //쿠폰개수가 더많으면 실행 나누기한이유는 셀렉트할때 그대로 총개수를 가지고와서 몫만나오게 10나눔
 
-			for(int i = 0 ; i < CartRepository.getCart().size() ; i ++) {//쿠폰사용될번호를 레파지토리에서 찾은후 수량을 가져온다
-				if(CartRepository.getCart().get(i).getCartNumber() == couponuseNumber) { //찾으면 시행
-					if(CartRepository.getCart().get(i).getOrderAmount() >= couponuseAmount) {//쿠폰 개수와 결제될 수량과의 개수 확인
-						CartRepository.setCoupon(CartRepository.getCoupon() - couponuseAmount*10);
+			for(int i = 0 ; i < CartUserRepository.getCart().size() ; i ++) {//쿠폰사용될번호를 레파지토리에서 찾은후 수량을 가져온다
+				if(CartUserRepository.getCart().get(i).getCartNumber() == couponuseNumber) { //찾으면 시행
+					if(CartUserRepository.getCart().get(i).getOrderAmount() >= couponuseAmount) {//쿠폰 개수와 결제될 수량과의 개수 확인
+						CartUserRepository.setCoupon(CartUserRepository.getCoupon() - couponuseAmount*10);
 						//사용된 쿠폰 개수 확인후 다시 디비에 저장
 						try { 
 
 							String sql = "update user1 set coupon = ? where userId = ? ";
 							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-							pstmt.setInt(1, CartRepository.getCoupon());
-							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
+							pstmt.setInt(1, CartUserRepository.getCoupon());
+							pstmt.setString(2, LoginUserRepository.getLogin().getLoginId());
 							pstmt.executeUpdate();
 
 							pstmt.close();
 
 							sql = "update UserOrder set couponuseAmount = ? where userId = ? and paymentflag = 'n' ";
 							pstmt = Controllers.getProgramController().getConnection().prepareStatement(sql);
-							pstmt.setInt(1, CartRepository.getCart().get(i).getCouponuseAmount() + couponuseAmount);
-							pstmt.setString(2, LoginRepository.getLogin().getLoginId());
+							pstmt.setInt(1, CartUserRepository.getCart().get(i).getCouponuseAmount() + couponuseAmount);
+							pstmt.setString(2, LoginUserRepository.getLogin().getLoginId());
 							pstmt.executeUpdate();
 
 						} catch (SQLException e) {
@@ -438,7 +438,7 @@ public class PaymentDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				LoginRepository.setLogin(newLogin);
+				LoginUserRepository.setLogin(newLogin);
 				success = true;
 			}else {
 
@@ -472,7 +472,7 @@ public class PaymentDao {
 			rs = pstmt.executeQuery();
 
 			if(rs.next()) {
-				NonUserRepository.setNonUsers(newNonUser);
+				LoginNonUserRepository.setNonUsers(newNonUser);
 				success = true;
 			}else {
 
